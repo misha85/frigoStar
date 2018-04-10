@@ -10,7 +10,7 @@
 				<span class="clear spacer_responsive_hide_mobile " style="height:13px;display:block;"></span>
 				<p class="text-center">Vaše je da poželite, a mi ćemo ispuniti Vaše želje.</p>
 				<p class="text-center">"Frigo - Star" se bavi proizvodnjom profesionalne ugostiteljske opreme (<i>rashladni uredaji, termički uredaji i neutralna oprema</i>) koja se koristi u mesarskoj industriji, ugostiteljstvu i trgovinama.</p>
-				<p class="text-center">Iskustvo, preciznost i profesionalnost rezultiraju visokim kvalitetom naših proizvoda, a  prilagodljivost Vašim željama i kratki rokovi isporuke čine da se .</p>
+				<p class="text-center">Iskustvo, preciznost i profesionalnost rezultiraju visokim kvalitetom naših proizvoda, a  prilagodljivost Vašim željama i kratki rokovi isporuke ????????????.</p>
 			</div>
 		</div>
 	</div>

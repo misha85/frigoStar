@@ -17,11 +17,7 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" :class="{active: infoActive}" role="button" aria-haspopup="true" aria-expanded="false"><span class="downdrop">Asortiman</span>&nbsp;<i class="far fa-newspaper"></i></a>
 							<div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-								<router-link class="btn btn-default dropdown-item" to="/asortiman/rashladni-uredjaji" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Rashladni uređaji</router-link>
-								<router-link class="btn btn-default dropdown-item" to="/asortiman/grejni-uredjaji" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Grejni uređaji</router-link>
-								<router-link class="btn btn-default dropdown-item" to="/asortiman/termicki-uredjaji" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Termički uređaji</router-link>
-								<!-- <div class="dropdown-divider"></div> -->
-								<router-link class="btn btn-default dropdown-item" to="/asortiman/neutralna-oprema" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Neutralna oprema</router-link>
+								<router-link v-for="kategorija in kategorije" class="btn btn-default dropdown-item" :to="'/asortiman/'+kategorija.url_ime" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>{{ kategorija.ktg_ime }}</router-link>
 							</div>
 							<!--  dropdown-menu -->
 						</li>
@@ -44,11 +40,21 @@
 </template>
 
 <script>
+	import axios from 'axios';
 	export default {
 		data() {
 			return {
-				infoActive: false
+				infoActive: false,
+				kategorije: []
 			}
+		},
+		created(){
+			axios.get('http://praksa3.mars-t.mars-hosting.com/misa/frigostar/get-category').then( response => {
+				this.kategorije = response.data.kategorije;
+				for(let i=0; i<response.data.kategorije.length; i++){
+					this.kategorije[i].url_ime = response.data.kategorije[i].ktg_ime.replace(' ', '-');
+				}
+			});
 		}
 	}
 </script>
@@ -71,6 +77,7 @@
    .nav-link{
    	cursor: pointer;
    	text-align: left;
+   	text-transform: capitalize;
    }
    li .dropdown{ position: relative; }
    .dropdown-menu{
@@ -81,6 +88,7 @@
    }
    .dropdown-item{
    		color: #000;
+   		text-transform: capitalize;
    }
    .dropdown-item:hover{
    	color: #0700FF;

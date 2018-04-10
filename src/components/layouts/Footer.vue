@@ -21,7 +21,6 @@
 
 		<div id="footer">
 			Copyright &copy; by <img class="logo" src="../../assets/footer-logo.png" alt="frigostar-logo"> 2018
-			made by <a target="_blank" @click.prevent>Misha</a>
 		</div>
 
 	</footer>
