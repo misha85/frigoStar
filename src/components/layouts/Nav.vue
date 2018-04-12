@@ -22,6 +22,9 @@
 							<!--  dropdown-menu -->
 						</li>
 						<li class="nav-item">
+							<router-link class="nav-link" to="/galerija" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Galerija&nbsp;<i class="fab fa-pagelines"></i></router-link>
+						</li>
+						<li class="nav-item">
 							<router-link class="nav-link" to="/kontakt" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Kontakt&nbsp;<i class="fab fa-pagelines"></i></router-link>
 						</li>
 					</ul>
@@ -29,8 +32,8 @@
 
 				</div>
 				<!--  navbar-collapse -->
-                <div class="col-3 d-none d-md-block d-sm-none">
-                    <router-link to='/' class="nav-link"><img src="../../assets/logo.png" class="nav-item" alt="frigostar-logo">
+                <div class="logo col-3 d-none d-md-block d-sm-none">
+                    <router-link to='/' class="img-logo nav-link"><img src="../../assets/logo.png" class="nav-item" alt="frigostar-logo">
                     </router-link>
                 </div><!--  col-3 -->
 			</nav>
@@ -60,6 +63,7 @@
 </script>
 
 <style scoped>
+	.navbar{ padding: 20px 0 !important; }
 	.navigation{
 		padding: 20px;
 		border-radius: 5px;
@@ -69,7 +73,7 @@
 		background: #008EFF;
 	}
 	.active{
-		color: #fff;
+		color: #fff !important;
 	}
 	.dropdown:hover>.dropdown-menu{
        display: block;
@@ -92,5 +96,11 @@
    }
    .dropdown-item:hover{
    	color: #0700FF;
+   }
+   .logo{ position: relative; }
+   .img-logo{
+   	position: absolute;
+   	right: 0;
+   	top: -30px;
    }
 </style>
