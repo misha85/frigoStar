@@ -1,117 +1,126 @@
 <template>
-<div class="container">
-	<div class="row">
-		<h5><i>
-			<router-link :to="'/asortiman/'+product.catUrl">
-				{{ product.ktg_ime | jsUcfirst }}
-			</router-link> >
-			<router-link :to="{ name: 'category', params: {category: product.catUrl }, query: { g: product.grp_id }}">
-				{{ product.grp_ime | jsUcfirst }}
-			</router-link></i></h5>
-	</div>
-	<div class="row main">
-		<div class="col-md-8">
-			<article class="product">
-				<div class="card">
-					<div class="card-header">{{ product.pzv_ime }}</div>
-					<div class="card-body">
-						<img :src="product.imgUrl">
-					</div>
-					<div class="card-footer" v-html="product.pzv_opis"></div>
-				</div>
-			</article>
+	<div class="container">
+		<div class="row">
+			<div class="sub-nav">
+				<ul class="nav nav-pills nav-fill">
+				  <li v-for="category in categories" :key="category.ktg_id" class="nav-item">
+				    <router-link :to="{ name: 'category', query: { naziv: category.urlTitle, id: category.ktg_id } }" tag="a" active-class="active" class="nav-link" exact>{{ category.ktg_ime }}</router-link>
+				  </li>
+				</ul>
+				<hr>
+			</div>
 		</div>
-		<div class="col-md-4">
-			<ul class="list-group">
-				<li class="list-group-item li-header text-center">Izaberite kategoriju:</li>
-				<router-link tag="a" :to="'/asortiman/'+category.catUrl" v-for="category in categories">
-					<li class="list-group-item list-group-item-light">
-						{{ category.ktg_ime }}
-					</li>
-				</router-link>
-			</ul>
+		<div class="">
+			<h1 v-if="!query"><i>Naša preporuka</i></h1>
+			<div v-if="query">
+				<router-view></router-view>
+			</div>
+			<div v-if="!query" class="row">
+				<article class="product col-lg-3 col-md-4 col-sm-6 col-6" v-for="product in rnd_products">
+					<router-link :to="{ name: 'product', query: { naziv: product.urlTitle, id: product.pzv_id } }" tag="a">
+						<div class="card brighten">
+							<div class="card-header text-center">
+								{{ product.pzv_ime }}
+							</div>
+								<img class="img-fluid" :src="product.url_img">
+							<div class="card-footer">Vise informacija</div>
+						</div>
+					</router-link>
+				</article>
+			</div>
 		</div>
 	</div>
-</div>
 </template>
 
 <script>
 import axios from 'axios';
 import { URL_PATH } from '../../config.js';
 
-export default {
-	data(){
+export default{
+	data() {
 		return {
-			product: {},
-			categories: []
+			categories: [],
+			rnd_products: [],
+			query: false
 		}
 	},
 	created(){
-		this.getProduct();
-		this.title = this.$route.params.category.replace('-', ' ');
-	},
-	methods:{
-		getProduct(){
-			axios.get('http://praksa3.mars-t.mars-hosting.com/misa/frigostar/get-product', {
-				params: {
-					id: this.$route.params.id
-				}
-			}).then( response => {
-				this.product = response.data.product;
-				this.product.imgUrl = URL_PATH.url+"get-images/"+this.product.pzv_id;
-				this.product.catUrl = this.product.ktg_ime.replace(' ', '-');
-				this.$route.params.category = this.product.ktg_ime;
-				this.categories = response.data.categories;
-				for(let i=0; i<this.categories.length; i++){
-					this.categories[i].catUrl = this.categories[i].ktg_ime.replace(' ', '-');
-				}
-			})
+		if(this.$route.query.naziv !== undefined){
+			this.query = true;
+		} else{
+			this.query = false;
 		}
-	},
-	filters: {
-		jsUcfirst(string) {
-			if (!string) return '';
-		    return string.charAt(0).toUpperCase() + string.slice(1);
-		}
+		axios.get(URL_PATH.url+"get-category").then( response => {
+			this.categories = response.data.kategorije;
+			for(let i=0; i<this.categories.length; i++){
+				this.categories[i].urlTitle = this.categories[i].ktg_ime.replace(' ', '_');
+			}
+			this.rnd_products = response.data.rnd_products;
+				for(let i=0; i<this.rnd_products.length; i++){
+					this.rnd_products[i].url_img = URL_PATH.url+"get-images/"+this.rnd_products[i].pzv_id;
+					this.rnd_products[i].catUrl = this.rnd_products[i].ktg_ime.replace(' ', '_');
+					this.rnd_products[i].urlTitle = this.rnd_products[i].pzv_ime.replace(/ /g, '_');
+					this.title = this.rnd_products[0].ktg_ime.replace('-', ' ');
+				}
+		})
 	},
 	watch:{
-		'this.$route'(){
-			this.$route.params.category = this.product.ktg_ime;
+		'$route'(){
+			if(this.$route.query.naziv !== undefined){
+				this.query = true;
+			} else{
+				this.query = false;
+			}
 		}
 	}
 }
 </script>
 
 <style scoped>
-	.product{ margin-bottom: 20px; }
-	h5{
-		color: #30288D;
-		margin: 30px 0 0px 20px;
+	.sub-nav{ margin: 20px auto; }
+	.product{
+		margin: 20px 0;
 	}
-	a{ text-decoration: none; }
-	.main{ margin-top: 30px; }
+	button{ text-transform: capitalize; margin: 10px; }
+	img{
+		width: 300px;
+	}
+	.card{
+		color: #fff;
+        transition: box-shadow 800ms;
+        border-color: firebrick;
+        font-size: 21px;
+	}
+	.card:hover{
+		font-size: 21px;
+		transition: 100ms;
+        box-shadow: 7px 7px 30px -2px rgba(0, 0, 0, 0.75);
+	}
+	a:hover{
+		text-decoration: none;
+	}
+	.card-body{ padding: 0; }
 	.card-header{
-		color: #fff;
-		font-size: 24px;
-		background: linear-gradient(to right, #4234EB 20%, #008EFF 80%);
+		height: 70px;
+		padding-top: 5px;
 		text-transform: capitalize;
+		background: #80C9f4;
 	}
-	.card-footer{
-		color: #fff;
-		font-size: 18px;
-		background: linear-gradient(to right, #008EFF 20%, #4234EB 80%);
+	.card-footer{  background: #80C9f4; }
+	h1{ text-transform: capitalize; color: firebrick }
+	.sub-nav{ margin: 20px auto; }
+
+	.brighten {
+	-webkit-filter: brightness(85%);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	transition: all 1s ease;
 	}
-	img{ margin-left: 20px; }
-	ul{ list-style: none; }
-	li{
-		text-align: left;
-		text-transform: capitalize;
-		color: #008EFF;
+
+	.brighten:hover {
+	-webkit-filter: brightness(100%);
 	}
-	.li-header{
-		background: #008EFF;
-		color: #fff;
-		height: 65px;
-		padding-top: 20px;
-	}
+	.btn-light{ border-color: firebrick; }
 </style>

@@ -38,14 +38,16 @@ export default {
 			groups: [],
 			category: '',
 			catUrl: '',
-			title: ''
+			title: '',
+			isActive: false
 		}
 	},
 	methods: {
 		getProducts() {
 			axios.get(URL_PATH.url+"get-products", {
 				params: {
-					catId: this.$route.query.id
+					catId: this.$route.query.kategorija,
+					grpId: this.$route.query.id
 				}
 			}).then( response => {
 				this.products = response.data.products;
@@ -56,6 +58,7 @@ export default {
 					this.title = this.products[0].ktg_ime.replace('-', ' ');
 				}
 				this.groups = response.data.groups;
+				console.log(this.groups);
 				for(let i=0; i<this.groups.length; i++){
 					this.groups[i].urlIme = this.groups[i].grp_ime.replace(/ /g , "_");
 				}
