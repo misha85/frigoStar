@@ -17,16 +17,6 @@
 						<li class="nav-item">
 							<router-link to='/katalog' class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Proizvodi&nbsp;<i class="fas fa-info-circle"></i></router-link>
 						</li>
-						<!-- <li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" :class="{active: infoActive}" role="button" aria-haspopup="true" aria-expanded="false"><span class="downdrop">Asortiman</span>&nbsp;<i class="far fa-newspaper"></i></a>
-							<div class="dropdown-menu"  aria-labelledby="navbarDropdown">
-								<router-link v-for="kategorija in kategorije" class="btn btn-default dropdown-item" :to="'/asortiman/'+kategorija.url_ime" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>{{ kategorija.ktg_ime }}</router-link>
-							</div>
-							 dropdown-menu
-						</li> -->
-						<li class="nav-item">
-							<router-link class="nav-link" to="/galerija" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Galerija&nbsp;<i class="fab fa-pagelines"></i></router-link>
-						</li>
 						<li class="nav-item">
 							<router-link class="nav-link" to="/kontakt" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Kontakt&nbsp;<i class="fab fa-pagelines"></i></router-link>
 						</li>

@@ -4,13 +4,13 @@
 		<div class="col-md-4 logo">
 			<img src="../../assets/logo.jpg" alt="Frigo star logo" width="100%"/>
 		</div>
-		<div class="col-md-8 center-block  d-none d-md-block">
+		<div class="col-md-8 center-block">
 			<div>
 				<h1 class="text-center"><i>Dobrodošli</i></h1>
 				<span class="clear spacer_responsive_hide_mobile " style="height:13px;display:block;"></span>
 				<p class="text-center">Vaše je da poželite, a mi ćemo ispuniti Vaše želje.</p>
-				<p class="text-center">"Frigo - Star" se bavi proizvodnjom profesionalne ugostiteljske opreme (<i>rashladni uredaji, termički uredaji i neutralna oprema</i>) koja se koristi u mesarskoj industriji, ugostiteljstvu i trgovinama.</p>
-				<p class="text-center">Iskustvo, preciznost i profesionalnost rezultiraju visokim kvalitetom naših proizvoda, a  prilagodljivost Vašim željama i kratki rokovi isporuke ????????????.</p>
+				<p class="text-center">"Frigo - Star" se bavi proizvodnjom profesionalne ugostiteljske opreme koja se koristi u mesarskoj industriji, ugostiteljstvu i trgovinama.</p>
+				<p class="text-center">Iskustvo, preciznost i profesionalnost rezultiraju visokim kvalitetom naših proizvoda, a  prilagodljivost Vašim željama i kratki rokovi isporuke su razlog zašto smo na samom vrhu u proizvodnji grejnih i rashladnih elemenata.</p>
 			</div>
 		</div>
 	</div>
@@ -62,6 +62,7 @@ export default {
 		padding-left: 30px;
 		padding: 20px 40px;
 		min-width: 100%;
+		margin-top: 20px;
 	}
 	#sijalica {
 		float:left;

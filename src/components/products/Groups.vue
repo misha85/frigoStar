@@ -7,11 +7,14 @@
 	</div>
 	<div class="row">
 		<div class="buttons" v-for="group in groups">
-			<router-link :to="{ name: 'groups', query: { kategorija: group.ktg_id, naziv: group.urlIme, id: group.grp_id } }" tag="button" class="btn btn-light">{{ group.grp_ime }}</router-link>
+			<router-link :to="{ name: 'groups', query: { kategorija: group.ktg_id, naziv: group.urlIme, id: group.grp_id } }" tag="button" class="btn btn-light" @click="changeMessageStatus">{{ group.grp_ime }}</router-link>
 		</div>
 	</div>
 	<hr>
-	<div class="row">
+	<div v-if="message" class="message">
+		Trenutno nemamo sliku za traženi proizvod, ali slobodno nam se javite i u kratkom roku ćemo pronaći zadovoljavajuće rešenje za Vas.
+	</div>
+	<div v-if="!message" class="row">
 		<article class="product col-lg-3 col-md-4 col-sm-6 col-6" v-for="product in products">
 			<router-link :to="{ name: 'product', query: { grupa: product.grp_id, naziv: product.urlTitle, id: product.pzv_id } }" tag="a">
 				<div class="card brighten">
@@ -39,7 +42,7 @@ export default {
 			category: '',
 			catUrl: '',
 			title: '',
-			isActive: false
+			message: false
 		}
 	},
 	methods: {
@@ -55,10 +58,8 @@ export default {
 					this.products[i].url_img = URL_PATH.url+"get-images/"+this.products[i].pzv_id;
 					this.products[i].catUrl = this.products[i].ktg_ime.replace(' ', '_');
 					this.products[i].urlTitle = this.products[i].pzv_ime.replace(/ /g, '_');
-					this.title = this.products[0].ktg_ime.replace('-', ' ');
 				}
 				this.groups = response.data.groups;
-				console.log(this.groups);
 				for(let i=0; i<this.groups.length; i++){
 					this.groups[i].urlIme = this.groups[i].grp_ime.replace(/ /g , "_");
 				}
@@ -67,10 +68,23 @@ export default {
 	},
 	created(){
 		this.getProducts();
+		this.title = this.$route.query.naziv.replace(/_/g, ' ');
+		this.changeMessageStatus;
 	},
 	watch:{
 		'$route'(){
 			this.getProducts();
+			this.title = this.$route.query.naziv.replace(/_/g, ' ');
+			this.changeMessageStatus;
+		}
+	},
+	computed:{
+		changeMessageStatus(){
+			if(this.products.length === 0){
+				return this.message = true;
+			} else {
+				return this.message = false;
+			}
 		}
 	}
 }
@@ -81,6 +95,7 @@ export default {
 		margin: 20px 0;
 	}
 	button{ text-transform: capitalize; margin: 10px; }
+	.buttons{ margin: 10px auto; }
 	img{
 		width: 300px;
 	}
@@ -122,4 +137,10 @@ export default {
 	-webkit-filter: brightness(100%);
 	}
 	.btn-light{ border-color: firebrick; }
+	.message{
+		margin-top: 40px;
+		font-size: 20px;
+		color: #828282;
+		font-weight: bold;
+	}
 </style>

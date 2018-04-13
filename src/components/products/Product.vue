@@ -4,7 +4,7 @@
 			<div class="sub-nav">
 				<ul class="nav nav-pills nav-fill">
 				  <li v-for="category in categories" :key="category.ktg_id" class="nav-item">
-				    <router-link :to="{ name: 'category', query: { naziv: category.urlTitle, id: category.ktg_id } }" tag="a" active-class="active" class="nav-link" exact>{{ category.ktg_ime }}</router-link>
+				    <router-link :to="{ name: 'category', query: { naziv: category.urlTitle, id: category.ktg_id } }" tag="a" class="nav-link" exact v-html="category.ktg_ime"></router-link>
 				  </li>
 				</ul>
 				<hr>
@@ -13,7 +13,9 @@
 		<div class="">
 			<h1 v-if="!query"><i>Naša preporuka</i></h1>
 			<div v-if="query">
-				<router-view></router-view>
+				<transition name="slide" mode="out-in">
+					<router-view></router-view>
+				</transition>
 			</div>
 			<div v-if="!query" class="row">
 				<article class="product col-lg-3 col-md-4 col-sm-6 col-6" v-for="product in rnd_products">
@@ -77,7 +79,6 @@ export default{
 </script>
 
 <style scoped>
-	.sub-nav{ margin: 20px auto; }
 	.product{
 		margin: 20px 0;
 	}
@@ -107,8 +108,8 @@ export default{
 		background: #80C9f4;
 	}
 	.card-footer{  background: #80C9f4; }
-	h1{ text-transform: capitalize; color: firebrick }
-	.sub-nav{ margin: 20px auto; }
+	h1{ text-transform: capitalize; color: #282B7A }
+	.sub-nav{ margin: 20px auto; font-size: 21px; }
 
 	.brighten {
 	-webkit-filter: brightness(85%);
@@ -123,4 +124,21 @@ export default{
 	-webkit-filter: brightness(100%);
 	}
 	.btn-light{ border-color: firebrick; }
+	li{ text-transform: capitalize; }
+	.slide-leave-active{
+	  transition: opacity 1s ease;
+	  opacity: 0;
+	  animation: slide-out 1s ease-out forwards;
+	}
+	.slide-leave{
+	  opacity: 1; transform: translateX(0); }
+	.slide-enter-active{ animation: slide-in 1s ease-out forwards; }
+	@keyframes slide-out{
+	  0%{ transform: translateY(0); }
+	  100%{ transform: translateY(-30px); }
+	}
+	@keyframes slide-in{
+	  0%{ transform: translateY(-30px); }
+	  100%{ transform: translateY(0); }
+	}
 </style>

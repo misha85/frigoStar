@@ -1,16 +1,19 @@
 <template>
 <div class="container">
-<div class="row">
-	<div class="buttons" v-for="group in groups">
-		<router-link :to="{ name: 'groups', query: { kategorija: group.ktg_id, naziv: group.urlIme, id: group.grp_id } }" tag="button" class="btn btn-light">{{ group.grp_ime }}</router-link>
+	<div class="row">
+		<div class="buttons" v-for="group in groups">
+			<router-link :to="{ name: 'groups', query: { kategorija: group.ktg_id, naziv: group.urlIme, id: group.grp_id } }" tag="button" class="btn btn-light">{{ group.grp_ime }}</router-link>
+		</div>
 	</div>
-</div>
 	<div class="row">
 		<h5><i>
+			<router-link to="/katalog">
+				Proizvodi
+			</router-link> >
 			<router-link :to="{ name: 'category', query: { naziv: product.catUrl, id: product.ktg_id } }">
 				{{ product.ktg_ime | jsUcfirst }}
 			</router-link> >
-			<router-link :to="{ name: 'groups', query: { kategorija: product.catUrl, naziv: product.grp_ime, id: product.grp_id }}">
+			<router-link :to="{ name: 'groups', query: { kategorija: product.ktg_id, naziv: product.grp_ime, id: product.grp_id }}">
 				{{ product.grp_ime | jsUcfirst }}
 			</router-link></i></h5>
 	</div>
@@ -50,10 +53,10 @@ export default {
 		getProduct(){
 			axios.get(URL_PATH.url+'get-product', {
 				params: {
-					id: this.$route.query.id,
-					catId: this.$route.query.kategorija
+					id: this.$route.query.id
 				}
 			}).then( response => {
+				console.log(response.data);
 				this.product = response.data.product;
 				this.product.imgUrl = URL_PATH.url+"get-images/"+this.product.pzv_id;
 				this.product.catUrl = this.product.ktg_ime.replace(' ', '_');
@@ -63,7 +66,9 @@ export default {
 					this.categories[i].catUrl = this.categories[i].ktg_ime.replace(' ', '_');
 				}
 				this.groups = response.data.groups;
-				console.log(this.groups);
+				for(let i=0; i<this.groups.length; i++){
+					this.groups[i].urlIme = this.groups[i].grp_ime.replace(/ /g , "_");
+				}
 			})
 		}
 	},
@@ -76,7 +81,6 @@ export default {
 	watch:{
 		'this.$route'(){
 			this.$route.params.category = this.product.ktg_ime;
-			console.log(this.$route.params.category);
 		}
 	}
 }
@@ -103,6 +107,8 @@ export default {
 	}
 	/*img{ margin-left: 20px; }*/
 	ul{ list-style: none; }
+	button{ text-transform: capitalize; margin: 10px; }
+	.buttons{ margin: 10px auto; }
 	li{
 		text-align: left;
 		text-transform: capitalize;
@@ -114,4 +120,5 @@ export default {
 		height: 65px;
 		padding-top: 20px;
 	}
+	.btn-light{ border-color: firebrick; }
 </style>

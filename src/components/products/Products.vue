@@ -53,7 +53,6 @@ export default {
 					this.products[i].url_img = URL_PATH.url+"get-images/"+this.products[i].pzv_id;
 					this.products[i].catUrl = this.products[i].ktg_ime.replace(' ', '_');
 					this.products[i].urlTitle = this.products[i].pzv_ime.replace(/ /g, '_');
-					this.title = this.products[0].ktg_ime.replace('-', ' ');
 				}
 				this.groups = response.data.groups;
 				for(let i=0; i<this.groups.length; i++){
@@ -64,10 +63,12 @@ export default {
 	},
 	created(){
 		this.getProducts();
+		this.title = this.$route.query.naziv.replace(/_/g, ' ');
 	},
 	watch:{
 		'$route'(){
 			this.getProducts();
+			this.title = this.$route.query.naziv.replace(/_/g, ' ');
 		}
 	}
 }
@@ -78,6 +79,7 @@ export default {
 		margin: 20px 0;
 	}
 	button{ text-transform: capitalize; margin: 10px; }
+	.buttons{ margin: 10px auto; }
 	img{
 		width: 300px;
 	}
