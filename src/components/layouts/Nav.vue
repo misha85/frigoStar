@@ -9,13 +9,13 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<router-link to='/' class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Početna&nbsp;<i class="fas fa-home"></i></router-link>
+							<router-link to='/' class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Početna&nbsp;<i class="fas fa-university"></i></router-link>
 						</li>
 						<li class="nav-item">
 							<router-link to='/o-nama' class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>O nama&nbsp;<i class="fas fa-info-circle"></i></router-link>
 						</li>
 						<li class="nav-item">
-							<router-link to='/katalog' class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Proizvodi&nbsp;<i class="fas fa-info-circle"></i></router-link>
+							<router-link to='/katalog' class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Proizvodi&nbsp;<i class="fas fa-shopping-cart"></i></router-link>
 						</li>
 						<li class="nav-item">
 							<router-link class="nav-link" to="/kontakt" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Kontakt&nbsp;<i class="fab fa-pagelines"></i></router-link>

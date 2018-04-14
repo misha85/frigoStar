@@ -56,6 +56,10 @@ export default{
 			this.categories = response.data.kategorije;
 			for(let i=0; i<this.categories.length; i++){
 				this.categories[i].urlTitle = this.categories[i].ktg_ime.replace(' ', '_');
+				if(i === 0) this.categories[i].ktg_ime += ' <i class="fas fa-thermometer-three-quarters" style="color:red"></i>';
+				if(i === 1) this.categories[i].ktg_ime += ' <i class="fas fa-thermometer-empty"></i>';
+				if(i === 2) this.categories[i].ktg_ime += ' <i class="fas fa-sun" style="color:orange"></i>';
+				if(i === 3) this.categories[i].ktg_ime += ' <i class="fas fa-link" style="color:grey"></i>';
 			}
 			this.rnd_products = response.data.rnd_products;
 				for(let i=0; i<this.rnd_products.length; i++){
@@ -95,7 +99,7 @@ export default{
 	.card:hover{
 		font-size: 21px;
 		transition: 100ms;
-        box-shadow: 7px 7px 30px -2px rgba(0, 0, 0, 0.75);
+        box-shadow: 7px 7px 30px -2px rgba(255, 255, 255, 0.75);
 	}
 	a:hover{
 		text-decoration: none;
@@ -105,14 +109,14 @@ export default{
 		height: 70px;
 		padding-top: 5px;
 		text-transform: capitalize;
-		background: #80C9f4;
+		background: #007bff;
 	}
-	.card-footer{  background: #80C9f4; }
-	h1{ text-transform: capitalize; color: #282B7A }
+	.card-footer{ font-size: 14px; background: #007bff; }
+	h1{ text-transform: capitalize; color: #007bff }
 	.sub-nav{ margin: 20px auto; font-size: 21px; }
 
 	.brighten {
-	-webkit-filter: brightness(85%);
+	-webkit-filter: brightness(70%);
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
 	-o-transition: all 1s ease;

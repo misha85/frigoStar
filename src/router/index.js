@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home.vue';
 import AboutUs from '@/components/AboutUs.vue';
+import Contact from '@/components/Contact.vue';
 import Product from '@/components/products/Product.vue';
 import Products from '@/components/products/Products.vue';
 import Groups from '@/components/products/Groups.vue';
@@ -19,6 +20,7 @@ export default new Router({
 			{ path: 'grupe', component: Groups, name: 'groups' },
 			{ path: 'proizvodi', component: singleProduct, name: 'product' }
 		] },
+		{ path: '/kontakt', component: Contact },
 		{ path: '*', redirect: '/' }
 	]
 })

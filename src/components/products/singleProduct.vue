@@ -9,11 +9,11 @@
 		<h5><i>
 			<router-link to="/katalog">
 				Proizvodi
-			</router-link> >
+			</router-link> <span class="arrow">></span>
 			<router-link :to="{ name: 'category', query: { naziv: product.catUrl, id: product.ktg_id } }">
 				{{ product.ktg_ime | jsUcfirst }}
-			</router-link> >
-			<router-link :to="{ name: 'groups', query: { kategorija: product.ktg_id, naziv: product.grp_ime, id: product.grp_id }}">
+			</router-link> <span class="arrow">></span>
+			<router-link :to="{ name: 'groups', query: { kategorija: product.ktg_id, naziv: product.grpUrl, id: product.grp_id }}">
 				{{ product.grp_ime | jsUcfirst }}
 			</router-link></i></h5>
 	</div>
@@ -60,6 +60,7 @@ export default {
 				this.product = response.data.product;
 				this.product.imgUrl = URL_PATH.url+"get-images/"+this.product.pzv_id;
 				this.product.catUrl = this.product.ktg_ime.replace(' ', '_');
+				this.product.grpUrl = this.product.grp_ime.replace(/ /g, '_');
 				this.$route.params.category = this.product.ktg_ime;
 				this.categories = response.data.categories;
 				for(let i=0; i<this.categories.length; i++){
@@ -121,4 +122,5 @@ export default {
 		padding-top: 20px;
 	}
 	.btn-light{ border-color: firebrick; }
+	.arrow{ color: #fff; }
 </style>

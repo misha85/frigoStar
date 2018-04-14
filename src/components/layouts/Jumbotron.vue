@@ -2,14 +2,14 @@
 <div class="container">
 	<div class="row hero">
 		<div class="col-md-4 logo">
-			<img src="../../assets/logo.jpg" alt="Frigo star logo" width="100%"/>
+			<img src="../../assets/main-logo.png" alt="Frigo star logo" width="100%"/>
 		</div>
 		<div class="col-md-8 center-block">
 			<div>
 				<h1 class="text-center"><i>Dobrodošli</i></h1>
 				<span class="clear spacer_responsive_hide_mobile " style="height:13px;display:block;"></span>
 				<p class="text-center">Vaše je da poželite, a mi ćemo ispuniti Vaše želje.</p>
-				<p class="text-center">"Frigo - Star" se bavi proizvodnjom profesionalne ugostiteljske opreme koja se koristi u mesarskoj industriji, ugostiteljstvu i trgovinama.</p>
+				<p class="text-center">"Frigo Star" se bavi proizvodnjom profesionalne ugostiteljske opreme koja se koristi u pekarskoj i mesarskoj industriji, ugostiteljstvu i trgovinama.</p>
 				<p class="text-center">Iskustvo, preciznost i profesionalnost rezultiraju visokim kvalitetom naših proizvoda, a  prilagodljivost Vašim željama i kratki rokovi isporuke su razlog zašto smo na samom vrhu u proizvodnji grejnih i rashladnih elemenata.</p>
 			</div>
 		</div>
@@ -19,7 +19,7 @@
 			<img src="../../assets/sijalica.png" alt="lightbulb" id="sijalica">
 			<p class="negativ" >Rešili ste da otvorite ugostiteljski objekat ili da renovirate već postojeći.
 			<br> Na pravom ste mestu
-			<br> Frigo-Star će se pobrinuti za sve Vaše želje i potrebe.
+			<br> Frigo Star će se pobrinuti za sve Vaše želje i potrebe.
 			</p>
 		</section>
 	</div>
@@ -42,7 +42,7 @@ export default {
 		margin-top: 30px;
 	}
 	.container{
-		color: #6A6A6A;
+		color: #fff;
 		font-size: 16px;
 	}
 	.col-md-8{
@@ -62,7 +62,7 @@ export default {
 		padding-left: 30px;
 		padding: 20px 40px;
 		min-width: 100%;
-		margin-top: 20px;
+		margin-top: 60px;
 	}
 	#sijalica {
 		float:left;

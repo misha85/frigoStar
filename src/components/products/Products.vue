@@ -92,7 +92,7 @@ export default {
 	.card:hover{
 		font-size: 21px;
 		transition: 100ms;
-        box-shadow: 7px 7px 30px -2px rgba(0, 0, 0, 0.75);
+        box-shadow: 7px 7px 30px -2px rgba(255, 255, 255, 0.75);
 	}
 	a:hover{
 		text-decoration: none;
@@ -102,14 +102,14 @@ export default {
 		height: 70px;
 		padding-top: 5px;
 		text-transform: capitalize;
-		background: #80C9f4;
+		background: #007bff;
 	}
-	.card-footer{  background: #80C9f4; }
+	.card-footer{ background: #007bff; font-size: 14px; }
 	h1{ text-transform: capitalize; color: firebrick }
 	.sub-nav{ margin: 20px auto; }
 
 	.brighten {
-	-webkit-filter: brightness(85%);
+	-webkit-filter: brightness(70%);
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
 	-o-transition: all 1s ease;

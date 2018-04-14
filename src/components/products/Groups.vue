@@ -12,13 +12,20 @@
 	</div>
 	<hr>
 	<div v-if="message" class="message">
-		Trenutno nemamo sliku za traženi proizvod, ali slobodno nam se javite i u kratkom roku ćemo pronaći zadovoljavajuće rešenje za Vas.
+		<div class="card text-white bg-light mb-3" style="">
+		  <div class="card-header">Frigo Star</div>
+		  <div class="card-body">
+		    <p class="card-text">
+		    	Trenutno nemamo sliku za traženi proizvod, ali slobodno nam se javite i u kratkom roku ćemo pronaći zadovoljavajuće rešenje za Vas.
+		    </p>
+		  </div>
+		</div>
 	</div>
 	<div v-if="!message" class="row">
 		<article class="product col-lg-3 col-md-4 col-sm-6 col-6" v-for="product in products">
 			<router-link :to="{ name: 'product', query: { grupa: product.grp_id, naziv: product.urlTitle, id: product.pzv_id } }" tag="a">
 				<div class="card brighten">
-					<div class="card-header text-center">
+					<div class="product-header text-center">
 						{{ product.pzv_ime }}
 					</div>
 						<img class="img-fluid" :src="product.url_img">
@@ -108,24 +115,25 @@ export default {
 	.card:hover{
 		font-size: 21px;
 		transition: 100ms;
-        box-shadow: 7px 7px 30px -2px rgba(0, 0, 0, 0.75);
+        box-shadow: 7px 7px 30px -2px rgba(255, 255, 255, 0.75);
 	}
 	a:hover{
 		text-decoration: none;
 	}
 	.card-body{ padding: 0; }
-	.card-header{
+	.product-header{
 		height: 70px;
 		padding-top: 5px;
 		text-transform: capitalize;
-		background: #80C9f4;
+		background: #007bff;
 	}
-	.card-footer{  background: #80C9f4; }
+	.card-text, .card-header{ padding: 10px; color: #2c3e50 }
+	.card-footer{ background: #007bff; font-size: 14px; }
 	h1{ text-transform: capitalize; color: firebrick }
 	.sub-nav{ margin: 20px auto; }
 
 	.brighten {
-	-webkit-filter: brightness(85%);
+	-webkit-filter: brightness(70%);
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
 	-o-transition: all 1s ease;
@@ -140,7 +148,7 @@ export default {
 	.message{
 		margin-top: 40px;
 		font-size: 20px;
-		color: #828282;
+		color: #f8f9fa;
 		font-weight: bold;
 	}
 </style>
