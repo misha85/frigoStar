@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="intro">
-			<img class="img-fluid" src="../assets/architecture-bay-bridge-356830.jpg" alt="o nama">
+			<img class="img-fluid img-top" src="../assets/architecture-bay-bridge-356830.jpg" alt="o nama">
 			<div class="container">
 				<div class="row">
 					<h1 class="d-none d-sm-block"><i>O nama</i></h1>
@@ -87,7 +87,7 @@ export default {
 		width: 300px;
 	}
 	hr{ margin-top: 40px; }
-	.img-bottom{ margin-bottom: -20px; }
+	.img-bottom, .img-top{ min-width: 100%; }
 	.fa-smile{ color: firebrick; margin-left: 5px; }
 	.fa-question { color: firebrick; vertical-align: baseline; margin-left: -5px; }
 </style>
