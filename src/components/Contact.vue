@@ -70,6 +70,7 @@ export default {
 	.map, .form{ margin-bottom: 30px; }
 	.fa-map-signs{ font-size: 30px; }
 	form{ margin-top: 30px; }
+	.form-group{ padding: 0 15px; }
 	label{ color: #fff; }
 	.btn{ margin-top: 20px; }
 	.hero img{
@@ -77,7 +78,7 @@ export default {
 		max-height: 650px;
 	}
 	.col-6:nth-of-type(2){ margin-top: 10px; }
-	.handshake{ margin: 20px  0 40px 0; }
+	.handshake{ margin: 20px  0 40px 0; padding: 0; }
 	.handshake img{ border-radius: 20px; }
 	h4{ color: #008EFF; margin: 20px auto; font-size: 25px; }
 	.info{ margin: 20px  0 40px 0; }

@@ -63,7 +63,7 @@ export default{
 			}
 			this.rnd_products = response.data.rnd_products;
 				for(let i=0; i<this.rnd_products.length; i++){
-					this.rnd_products[i].url_img = URL_PATH.url+"get-images/"+this.rnd_products[i].pzv_id;
+					this.rnd_products[i].url_img = URL_PATH.url+"get-small-images/"+this.rnd_products[i].pzv_id;
 					this.rnd_products[i].catUrl = this.rnd_products[i].ktg_ime.replace(' ', '_');
 					this.rnd_products[i].urlTitle = this.rnd_products[i].pzv_ime.replace(/ /g, '_');
 					this.title = this.rnd_products[0].ktg_ime.replace('-', ' ');

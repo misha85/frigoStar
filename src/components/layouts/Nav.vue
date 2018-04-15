@@ -15,7 +15,7 @@
 							<router-link to='/o-nama' class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>O nama&nbsp;<i class="fas fa-info-circle"></i></router-link>
 						</li>
 						<li class="nav-item">
-							<router-link to='/katalog' class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Proizvodi&nbsp;<i class="fas fa-shopping-cart"></i></router-link>
+							<router-link to='/katalog' class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" :class="{active: active}" exact>Proizvodi&nbsp;<i class="fas fa-shopping-cart"></i></router-link>
 						</li>
 						<li class="nav-item">
 							<router-link class="nav-link" to="/kontakt" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Kontakt&nbsp;<i class="fab fa-pagelines"></i></router-link>
@@ -41,7 +41,17 @@
 		data() {
 			return {
 				infoActive: false,
-				kategorije: []
+				kategorije: [],
+				active: false
+			}
+		},
+		computed:{
+			isActive(){
+				if (this.$route.path === '/katalog/kategorije' || this.$route.path === '/katalog/grupe' || this.$route.path === '/katalog/proizvod') {
+					return this.active = true;
+				} else {
+					this.active = false;
+				}
 			}
 		},
 		created(){
@@ -51,6 +61,12 @@
 					this.kategorije[i].url_ime = response.data.kategorije[i].ktg_ime.replace(' ', '-');
 				}
 			});
+			this.isActive;
+		},
+		watch:{
+			'$route'(){
+				this.isActive;
+			}
 		}
 	}
 </script>

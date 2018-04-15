@@ -62,7 +62,7 @@ export default {
 			}).then( response => {
 				this.products = response.data.products;
 				for(let i=0; i<this.products.length; i++){
-					this.products[i].url_img = URL_PATH.url+"get-images/"+this.products[i].pzv_id;
+					this.products[i].url_img = URL_PATH.url+"get-small-images/"+this.products[i].pzv_id;
 					this.products[i].catUrl = this.products[i].ktg_ime.replace(' ', '_');
 					this.products[i].urlTitle = this.products[i].pzv_ime.replace(/ /g, '_');
 				}

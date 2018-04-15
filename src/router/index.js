@@ -18,7 +18,7 @@ export default new Router({
 		{ path: '/katalog', component: Product, children: [
 			{ path: 'kategorije', component: Products, name: 'category' },
 			{ path: 'grupe', component: Groups, name: 'groups' },
-			{ path: 'proizvodi', component: singleProduct, name: 'product' }
+			{ path: 'proizvod', component: singleProduct, name: 'product' }
 		] },
 		{ path: '/kontakt', component: Contact },
 		{ path: '*', redirect: '/' }

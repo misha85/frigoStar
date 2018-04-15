@@ -1,5 +1,4 @@
 <template>
-	<div class="container">
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="5000">
 			<div class="carousel-inner">
 				<div class="carousel-item">
@@ -40,7 +39,6 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-	</div>
 </template>
 
 <script>
@@ -54,9 +52,9 @@ export default {
 </script>
 
 <style scoped>
-	#carouselExampleControls{ margin: 60px 0;	}
-	.carousel-inner{ border-radius: 20px; }
+	#carouselExampleControls{ margin: 60px 0 160px 0;	}
 	.carousel-caption{ background: rgba(0, 0, 0, 0.7); border-radius: 20px; }
 	h5{ color: #fff; font-weight: bold; font-size: 25px; }
 	.carousel-caption p{ font-size: 18px; }
+	.carousel-item img{ min-width: 100%; max-height: 750px; }
 </style>

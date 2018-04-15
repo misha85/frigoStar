@@ -44,7 +44,6 @@
 				</div>
 			</div>
 		</div>
-		<img src="../assets/architecture-buildings-city-311012.jpg" class="img-fluid img-bottom" alt="">
 	</div>
 </template>
 
@@ -87,7 +86,7 @@ export default {
 		width: 300px;
 	}
 	hr{ margin-top: 40px; }
-	.img-bottom, .img-top{ min-width: 100%; }
+	.img-top{ min-width: 100%; }
 	.fa-smile{ color: firebrick; margin-left: 5px; }
 	.fa-question { color: firebrick; vertical-align: baseline; margin-left: -5px; }
 </style>

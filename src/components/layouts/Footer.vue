@@ -71,6 +71,13 @@ export default {
 </script>
 
 <style scoped>
+	footer{
+		background-image: url('../../assets/architecture-buildings-city-311012.jpg');
+		background-repeat: no-repeat;
+		background-position: center bottom;
+		background-size: 100% 100%;
+		margin-top: 150px;
+	}
 	#sub-footer{
 		min-width: 100%;
 		color: #fff;
@@ -83,6 +90,11 @@ export default {
 	.container .row{
 		text-align: left;
 		margin: 40px 0 40px 0;
+		background: #000;
+		opacity: .9;
+		padding-top: 90px;
+		min-height: 400px;
+		border-radius: 30px;
 	}
 	.fa-clock{
 		margin-top: 10px;
