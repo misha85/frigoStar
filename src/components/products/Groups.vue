@@ -100,6 +100,7 @@ export default {
 <style scoped>
 	.product{
 		margin: 20px 0;
+		border-radius: 20px;
 	}
 	button{ text-transform: capitalize; margin: 10px; }
 	.buttons{ margin: 10px auto; }
@@ -108,14 +109,15 @@ export default {
 	}
 	.card{
 		color: #fff;
-        transition: box-shadow 800ms;
-        border-color: firebrick;
-        font-size: 21px;
+    transition: box-shadow 800ms;
+    border-color: firebrick;
+    font-size: 21px;
+		border-radius: 7px;
 	}
 	.card:hover{
 		font-size: 21px;
 		transition: 100ms;
-        box-shadow: 7px 7px 30px -2px rgba(255, 255, 255, 0.75);
+      box-shadow: 7px 7px 30px -2px rgba(255, 255, 255, 0.75);
 	}
 	a:hover{
 		text-decoration: none;
@@ -126,9 +128,14 @@ export default {
 		padding-top: 5px;
 		text-transform: capitalize;
 		background: #007bff;
+		border-radius: 7px 7px 0 0;
 	}
 	.card-text, .card-header{ padding: 10px; color: #2c3e50 }
-	.card-footer{ background: #007bff; font-size: 14px; }
+	.card-footer{
+		background: #007bff;
+		font-size: 14px;
+		border-radius:  0 0 7px 7px;
+	}
 	h1{ text-transform: capitalize; color: firebrick }
 	.sub-nav{ margin: 20px auto; }
 

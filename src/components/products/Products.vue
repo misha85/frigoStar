@@ -86,9 +86,10 @@ export default {
 	}
 	.card{
 		color: #fff;
-        transition: box-shadow 800ms;
-        border-color: firebrick;
-        font-size: 21px;
+    transition: box-shadow 800ms;
+    border-color: firebrick;
+    font-size: 21px;
+    border-radius: 7px;
 	}
 	.card:hover{
 		font-size: 21px;
@@ -104,8 +105,13 @@ export default {
 		padding-top: 5px;
 		text-transform: capitalize;
 		background: #007bff;
+		border-radius: 7px 7px 0 0;
 	}
-	.card-footer{ background: #007bff; font-size: 14px; }
+	.card-footer{
+		background: #007bff;
+		font-size: 14px;
+		border-radius: 0 0 7px 7px;
+	}
 	h1{ text-transform: capitalize; color: firebrick }
 	.sub-nav{ margin: 20px auto; }
 

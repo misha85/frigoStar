@@ -13,15 +13,16 @@
 				<h2>Tu smo za svako vaše pitanje</h2>
 				<form>
 					<div class="email form-group">
-						<label for="email">Email:</label>
-						<input type="email" class="form-control" id="email" name="email" placeholder="vaša email adresa..." required>
+						<input v-model="from" type="email" class="form-control" id="email" name="email" placeholder="vaša email adresa..." required>
+					</div>
+					<div class=" form-group">
+						<input v-model="subject" type="text" class="form-control" id="subject" name="subject" placeholder="tema.." required>
 					</div>
 					<div class="form-group">
-						<label for="body">Poruka:</label>
-					    <textarea name="body" id="body" class="form-control" placeholder="vaša poruka..." rows="5"></textarea>
+					    <textarea v-model="content" name="body" id="body" class="form-control" placeholder="vaša poruka..." rows="5"></textarea>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary" name="submit">Pošalji</button>
+						<button @click.prevent="sendMail" type="submit" class="btn btn-primary" name="submit">Pošalji</button>
 					</div>
 				</form>
 			</div>
@@ -42,16 +43,53 @@
 			</div>
 		</div>
 	</div>
+	<!--  BOOTSTRAP  MODAL -->
+	<div class="modal fade" id="mailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Frigo Star</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Vaša poruka je poslata. Odgovorićemo Vam u što kraćem roku.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">U redu</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </div>
 </template>
 
 <script>
-import GoogleMap from "./GoogleMap.vue";
+import axios from 'axios';
 
 export default {
 	data(){
 		return {
-
+			from: '',
+			subject: '',
+			content: ''
+		}
+	},
+	methods:{
+		sendMail(){
+			let data = new FormData();
+			data.append('from', this.from);
+			data.append('subject', this.subject);
+			data.append('message', this.content);
+			// axios.post("https://milosh.000webhostapp.com/sendMail.php", data).then( response => {
+			axios.post("http://praksa3.mars-t.mars-hosting.com/misa/frigostar/send-mail", data).then( response => {
+				$('#mailModal').modal('show');
+				this.from = '';
+				this.subject = '';
+				this.content = '';
+				console.log(response.data);
+			})
 		}
 	}
 }

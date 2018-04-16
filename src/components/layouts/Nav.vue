@@ -1,7 +1,7 @@
 <template>
 	<div class="container-fluid bg">
 		<div class="container">
-			<nav class="navbar navbar-expand-lg navbar-dark">
+			<nav class="navbar navbar-expand-sm navbar-dark">
 				<button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -72,6 +72,9 @@
 </script>
 
 <style scoped>
+	.navbar-toggler-icon {
+		background-image: url('https://mdbootstrap.com/img/svg/hamburger1.svg?color=fff');
+	}
 	.navbar{ padding: 20px 0 !important; }
 	.navigation{
 		padding: 20px;
