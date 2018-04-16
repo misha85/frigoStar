@@ -20,9 +20,12 @@
 						<li class="nav-item">
 							<router-link class="nav-link" to="/kontakt" data-toggle="collapse" data-target=".navbar-collapse.show" active-class="active" exact>Kontakt&nbsp;<i class="fab fa-pagelines"></i></router-link>
 						</li>
+						<li v-if="admin" class="nav-item">
+							<a @click.prevent="signOut" class="nav-link">
+								Izloguj se&nbsp;<i class="fas fa-sign-out-alt"></i>
+							</a>
+						</li>
 					</ul>
-
-
 				</div>
 				<!--  navbar-collapse -->
                 <div class="logo col-3 d-none d-md-block d-sm-none">
@@ -42,7 +45,8 @@
 			return {
 				infoActive: false,
 				kategorije: [],
-				active: false
+				active: false,
+				admin: false
 			}
 		},
 		computed:{
@@ -62,10 +66,27 @@
 				}
 			});
 			this.isActive;
+			this.checkSession();
 		},
 		watch:{
 			'$route'(){
 				this.isActive;
+				this.checkSession();
+			}
+		},
+		methods:{
+			checkSession(){
+				axios.get('http://663n121.mars1.mars-hosting.com/api/login/session', {
+					params: { sid: localStorage.getItem('sid') }
+				}).then( response => {
+					response.data.res === 'admin' ? this.admin = true : this.admin = false;
+				});
+			},
+			signOut(){
+				axios.get('http://663n121.mars1.mars-hosting.com/api/login/logout');
+				this.admin = false;
+				localStorage.removeItem('sid');
+				this.$router.push('štogod');
 			}
 		}
 	}

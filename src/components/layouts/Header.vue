@@ -6,15 +6,9 @@
 
 <script>
 import Nav from './Nav.vue';
-
 export default {
 	components: {
 		'app-nav': Nav
-	},
-	data(){
-		return {
-
-		}
 	}
 }
 </script>

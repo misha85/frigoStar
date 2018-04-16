@@ -26,6 +26,7 @@
 							</div>
 								<img class="img-fluid" :src="product.url_img">
 							<div class="card-footer">Vise informacija</div>
+							<router-link tag="button" class="btn btn-warning" :to="{ name: 'edit', query: { id: product.pzv_id } }">Izmeni</router-link>
 						</div>
 					</router-link>
 				</article>
@@ -43,15 +44,13 @@ export default{
 		return {
 			categories: [],
 			rnd_products: [],
-			query: false
+			query: false,
+			admin: true
 		}
 	},
 	created(){
-		if(this.$route.query.naziv !== undefined){
-			this.query = true;
-		} else{
-			this.query = false;
-		}
+		this.$route.query.naziv !== undefined || this.$route.query.id !== undefined ? this.query = true : this.query = false;
+
 		axios.get(URL_PATH.url+"get-category").then( response => {
 			this.categories = response.data.kategorije;
 			for(let i=0; i<this.categories.length; i++){
@@ -72,11 +71,7 @@ export default{
 	},
 	watch:{
 		'$route'(){
-			if(this.$route.query.naziv !== undefined){
-				this.query = true;
-			} else{
-				this.query = false;
-			}
+			this.$route.query.naziv !== undefined || this.$route.query.id !== undefined ? this.query = true : this.query = false;
 		}
 	}
 }
@@ -87,15 +82,22 @@ export default{
 		margin: 20px 0;
 	}
 	button{ text-transform: capitalize; margin: 10px; }
+	.btn-warning{
+		position: absolute;
+		top: 70px;
+		margin: 0;
+		z-index: 1000;
+	}
 	img{
 		width: 300px;
+	    position: relative;
 	}
 	.card{
 		color: #fff;
-    transition: box-shadow 800ms;
-    border-color: firebrick;
-    font-size: 21px;
-    border-radius: 7px;
+	    transition: box-shadow 800ms;
+	    border-color: firebrick;
+	    font-size: 21px;
+	    border-radius: 7px;
 	}
 	.card:hover{
 		font-size: 21px;

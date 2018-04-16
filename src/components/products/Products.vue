@@ -20,6 +20,7 @@
 					</div>
 						<img class="img-fluid" :src="product.url_img">
 					<div class="card-footer">Vise informacija</div>
+					<router-link tag="button" class="btn btn-warning" :to="{ name: 'edit', query: { id: product.pzv_id } }">Izmeni</router-link>
 				</div>
 			</router-link>
 		</article>
@@ -80,9 +81,16 @@ export default {
 		margin: 20px 0;
 	}
 	button{ text-transform: capitalize; margin: 10px; }
+	.btn-warning{
+		position: absolute;
+		top: 70px;
+		margin: 0;
+		z-index: 1000;
+	}
 	.buttons{ margin: 10px auto; }
 	img{
 		width: 300px;
+	    position: relative;
 	}
 	.card{
 		color: #fff;
