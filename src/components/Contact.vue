@@ -83,7 +83,7 @@ export default {
 			data.append('subject', this.subject);
 			data.append('message', this.content);
 			// axios.post("https://milosh.000webhostapp.com/sendMail.php", data).then( response => {
-			axios.post("http://praksa3.mars-t.mars-hosting.com/misa/frigostar/send-mail", data).then( response => {
+			axios.post("http://663n121.mars1.mars-hosting.com/api/send-mail", data).then( response => {
 				$('#mailModal').modal('show');
 				this.from = '';
 				this.subject = '';

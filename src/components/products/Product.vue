@@ -10,7 +10,7 @@
 				<hr>
 			</div>
 		</div>
-		<div class="">
+		<div>
 			<h1 v-if="!query"><i>Naša preporuka</i></h1>
 			<div v-if="query">
 				<transition name="slide" mode="out-in">
@@ -18,6 +18,17 @@
 				</transition>
 			</div>
 			<div v-if="!query" class="row">
+				<article v-if="admin" class="product col-lg-3 col-md-4 col-sm-6 col-6">
+					<router-link to="/katalog/proizvod/dodaj-novi" tag="a">
+						<div class="card brighten">
+							<div class="card-header-add text-center">Dodaj</div>
+							<div class="add">
+								<img src="../../assets/add.png" class="img-fluid" alt="">
+							</div>
+							<div class="card-footer add-footer">Artikal</div>
+						</div>
+					</router-link>
+				</article>
 				<article class="product col-lg-3 col-md-4 col-sm-6 col-6" v-for="product in rnd_products">
 					<router-link :to="{ name: 'product', query: { naziv: product.urlTitle, id: product.pzv_id } }" tag="a">
 						<div class="card brighten">
@@ -26,7 +37,7 @@
 							</div>
 								<img class="img-fluid" :src="product.url_img">
 							<div class="card-footer">Vise informacija</div>
-							<router-link tag="button" class="btn btn-warning" :to="{ name: 'edit', query: { id: product.pzv_id } }">Izmeni</router-link>
+							<router-link v-if="admin" tag="button" class="btn btn-warning" :to="{ name: 'edit', query: { id: product.pzv_id } }">Izmeni</router-link>
 						</div>
 					</router-link>
 				</article>
@@ -38,6 +49,7 @@
 <script>
 import axios from 'axios';
 import { URL_PATH } from '../../config.js';
+import { eventBus } from '../../main.js';
 
 export default{
 	data() {
@@ -45,34 +57,53 @@ export default{
 			categories: [],
 			rnd_products: [],
 			query: false,
-			admin: true
+			admin: false
 		}
 	},
 	created(){
-		this.$route.query.naziv !== undefined || this.$route.query.id !== undefined ? this.query = true : this.query = false;
-
-		axios.get(URL_PATH.url+"get-category").then( response => {
-			this.categories = response.data.kategorije;
-			for(let i=0; i<this.categories.length; i++){
-				this.categories[i].urlTitle = this.categories[i].ktg_ime.replace(' ', '_');
-				if(i === 0) this.categories[i].ktg_ime += ' <i class="fas fa-thermometer-three-quarters" style="color:red"></i>';
-				if(i === 1) this.categories[i].ktg_ime += ' <i class="fas fa-thermometer-empty"></i>';
-				if(i === 2) this.categories[i].ktg_ime += ' <i class="fas fa-sun" style="color:orange"></i>';
-				if(i === 3) this.categories[i].ktg_ime += ' <i class="fas fa-link" style="color:grey"></i>';
-			}
-			this.rnd_products = response.data.rnd_products;
-				for(let i=0; i<this.rnd_products.length; i++){
-					this.rnd_products[i].url_img = URL_PATH.url+"get-small-images/"+this.rnd_products[i].pzv_id;
-					this.rnd_products[i].catUrl = this.rnd_products[i].ktg_ime.replace(' ', '_');
-					this.rnd_products[i].urlTitle = this.rnd_products[i].pzv_ime.replace(/ /g, '_');
-					this.title = this.rnd_products[0].ktg_ime.replace('-', ' ');
-				}
+		this.$route.path === '/katalog/proizvod/dodaj-novi' || this.$route.query.naziv !== undefined || this.$route.query.id !== undefined ? this.query = true : this.query = false;
+		eventBus.$on('itemChanged', () => {
+			this.getProducts();
 		})
+		eventBus.$on('signOut', () => {
+			this.admin = false;
+		})
+		this.getProducts();
+		this.checkSession();
 	},
 	watch:{
 		'$route'(){
-			this.$route.query.naziv !== undefined || this.$route.query.id !== undefined ? this.query = true : this.query = false;
+			this.$route.path === '/katalog/proizvod/dodaj-novi' || this.$route.query.naziv !== undefined || this.$route.query.id !== undefined ? this.query = true : this.query = false;
+			this.checkSession();
 		}
+	},
+	methods:{
+		getProducts(){
+			axios.get(URL_PATH.url+"get-category").then( response => {
+				this.categories = response.data.kategorije;
+				for(let i=0; i<this.categories.length; i++){
+					this.categories[i].urlTitle = this.categories[i].ktg_ime.replace(' ', '_');
+					if(i === 0) this.categories[i].ktg_ime += ' <i class="fas fa-thermometer-three-quarters" style="color:red"></i>';
+					if(i === 1) this.categories[i].ktg_ime += ' <i class="fas fa-thermometer-empty"></i>';
+					if(i === 2) this.categories[i].ktg_ime += ' <i class="fas fa-sun" style="color:orange"></i>';
+					if(i === 3) this.categories[i].ktg_ime += ' <i class="fas fa-link" style="color:grey"></i>';
+				}
+				this.rnd_products = response.data.rnd_products;
+					for(let i=0; i<this.rnd_products.length; i++){
+						this.rnd_products[i].url_img = URL_PATH.url+"get-small-images/"+this.rnd_products[i].pzv_id;
+						this.rnd_products[i].catUrl = this.rnd_products[i].ktg_ime.replace(' ', '_');
+						this.rnd_products[i].urlTitle = this.rnd_products[i].pzv_ime.replace(/ /g, '_');
+						this.title = this.rnd_products[0].ktg_ime.replace('-', ' ');
+					}
+			})
+		},
+		checkSession(){
+			axios.get('http://663n121.mars1.mars-hosting.com/api/login/session', {
+				params: { sid: localStorage.getItem('sid') }
+			}).then( response => {
+				response.data.res === 'admin' ? this.admin = true : this.admin = false;
+			});
+		},
 	}
 }
 </script>
@@ -104,9 +135,7 @@ export default{
 		transition: 100ms;
         box-shadow: 7px 7px 30px -2px rgba(255, 255, 255, 0.75);
 	}
-	a:hover{
-		text-decoration: none;
-	}
+	a:hover{ text-decoration: none; }
 	.card-body{ padding: 0; }
 	.card-header{
 		height: 70px;
@@ -131,10 +160,10 @@ export default{
 	-ms-transition: all 1s ease;
 	transition: all 1s ease;
 	}
-
-	.brighten:hover {
-	-webkit-filter: brightness(100%);
-	}
+	.add{ padding: 10px; }
+	.card-header-add{ background: #238618; height: 70px; border-radius: 8px 8px 0 0; line-height: 70px; font-size: 22px; color: #fff; }
+	.add-footer{ background: #238618; font-size: 22px; height: 47px; line-height: 20px; }
+	.brighten:hover { -webkit-filter: brightness(100%); }
 	.btn-light{ border-color: firebrick; }
 	li{ text-transform: capitalize; }
 	.slide-leave-active{
@@ -142,8 +171,7 @@ export default{
 	  opacity: 0;
 	  animation: slide-out 1s ease-out forwards;
 	}
-	.slide-leave{
-	  opacity: 1; transform: translateX(0); }
+	.slide-leave{ opacity: 1; transform: translateX(0); }
 	.slide-enter-active{ animation: slide-in 1s ease-out forwards; }
 	@keyframes slide-out{
 	  0%{ transform: translateY(0); }

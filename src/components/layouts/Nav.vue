@@ -40,6 +40,8 @@
 
 <script>
 	import axios from 'axios';
+	import { eventBus } from '../../main.js';
+
 	export default {
 		data() {
 			return {
@@ -86,6 +88,7 @@
 				axios.get('http://663n121.mars1.mars-hosting.com/api/login/logout');
 				this.admin = false;
 				localStorage.removeItem('sid');
+				eventBus.$emit('signOut');
 				this.$router.push('štogod');
 			}
 		}

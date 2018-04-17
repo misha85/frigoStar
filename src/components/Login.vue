@@ -39,6 +39,8 @@ export default {
 	methods:{
 		signIn(){
 			let hash = sha256(this.password);
+			console.log(this.password);
+			console.log(hash);
 			axios.post('http://663n121.mars1.mars-hosting.com/api/login/login', {
 				email: this.email,
 				password: hash,
@@ -49,7 +51,7 @@ export default {
 					localStorage.setItem('sid', response.data.sid);
 					this.warning = false;
 					eventBus.$emit('userLogin', response.data.user);
-					this.$router.push('/');
+					this.$router.push('/katalog');
 				}
 				console.log(response.data);
 			})
