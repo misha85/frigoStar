@@ -4,7 +4,7 @@
 	<div class="row">
 		<h1 v-if="!editTitle" @click="editTitle = !editTitle"><i class="fas fa-pencil-alt"></i>{{ item.pzv_ime }}</h1>
 		<div v-if="editTitle" class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
-			<input type="text" class="form-control col-12" id="naslov" name="naslov" v-model="item.pzv_ime" placeholder="naslov...">
+			<input type="text" @keyup.enter="editTitle = !editTitle" class="form-control col-12" id="naslov" name="naslov" v-model="item.pzv_ime" placeholder="naslov...">
 			<span @click="editTitle = !editTitle"><i class="fas fa-check"></i></span>
 			<span @click="revert('title')"><i class="fas fa-ban"></i></span>
 		</div>
@@ -73,19 +73,25 @@
 
 	<!--  ==================================  DESCRIPTION  ==================================  -->
 	<div class="row">
-		<div id="body">
-			<h5 v-if="!editContent" @click="editContent = !editContent" class="content"><i class="fas fa-pencil-alt"></i>{{ item.pzv_opis }}</h5>
-			<div v-if="editContent" class="form-group">
-			    <textarea v-model="item.pzv_opis" name="body" class="form-control" placeholder="opis..." rows="3"></textarea>
-			    <span @click="editContent = !editContent"><i class="fas fa-check"></i></span>
-				<span @click="revert('content')"><i class="fas fa-ban"></i></span>
+			<h3>Opis proizvoda:</h3>
+			<div class="description col-12">
+				<vue-editor v-model="item.pzv_opis" class="form-control editor" placeholder="opis..." :editorToolbar="customToolbar"></vue-editor>
 			</div>
-		</div>
 	</div>
+	<!--  ==================================  CONTROL  BUTTONS  ==================================  -->
 	<div class="row">
 		<div class="form-group">
 			<button @click="attemptUpload" class="btn btn-primary" name="submit">Izmeni</button>
-			<button @click="redirect" class="btn btn-secondary" name="submit">Drugi put</button>
+			<longpress
+				class="btn btn-danger buttons"
+				duration="3"
+				pressing-text="Brisanje za {$rcounter}"
+        :value="item.pzv_id"
+        :on-confirm="doDelete"
+				action-text="Brišem, ček, ček...">
+					Izbriši
+			</longpress>
+			<button @click="redirect" class="btn btn-secondary" name="submit">Ništa</button>
 		</div>
 	</div>
 	<!--  BOOTSTRAP  MODAL -->
@@ -99,7 +105,8 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        Proizvod je uspešno izmenjen.
+	       <p v-if="editProduct">Proizvod je uspešno izmenjen.</p>
+	       <p v-if="deleteProduct">Proizvod je obrisan.</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-success" @click="redirect" data-dismiss="modal">U redu</button>
@@ -115,18 +122,32 @@ import axios from 'axios';
 import { URL_PATH } from '../../config.js';
 import { eventBus } from '../../main.js';
 import PictureInput from 'vue-picture-input';
+import Longpress from 'vue-longpress';
+import { VueEditor } from 'vue2-editor';
 
 export default {
 	components: {
-		PictureInput
+		VueEditor,
+		PictureInput,
+		Longpress
 	},
 	data(){
 		return {
 			item: {},
 			editTitle: false,
-			editContent: false,
 			editSmallImage: false,
-			editLargeImage: false
+			editLargeImage: false,
+			editProduct: false,
+			deleteProduct: false,
+			customToolbar: [
+			[{ 'header': [false, 2, 3, 4, 5, 6, ] }],
+			['bold', 'italic', 'underline', 'strike'],
+			[{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}],
+			[{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
+			[{ 'indent': '-1'}, { 'indent': '+1' }],
+			[{ 'color': [] }, { 'background': [] }],
+			['link']
+			]
 		}
 	},
 	created(){
@@ -138,10 +159,12 @@ export default {
 				params: { id: this.$route.query.id }
 			}).then( response => {
 				this.item = response.data.item;
+				this.item.urlIme = this.item.grp_ime.replace(/ /g , "_");
 				this.item.smallImgUrl = URL_PATH.url+'get-small-images/'+this.$route.query.id;
 				this.item.largeImgUrl = URL_PATH.url+'get-large-images/'+this.$route.query.id;
 	    	this.item.newSmallImage = '';
 	    	this.item.newLargeImage = '';
+	    	console.log(this.item.urlIme);
 			})
 		},
 		revert(section){
@@ -149,8 +172,9 @@ export default {
 			section === 'title' ? this.editTitle = false : this.editContent = false;
 		},
 		redirect(){
-			this.$router.push('/katalog');
-			// console.log('redirect');
+			this.$router.push({ name: 'groups', query: { kategorija: this.item.ktg_id, naziv: this.item.urlIme, id: this.item.grp_id } });
+			this.editProduct = false;
+			this.deleteProduct = false;
 		},
 		onChanged(size) {
 			if(size === 'small')
@@ -170,10 +194,22 @@ export default {
     	formData.append('largeImage', this.item.newLargeImage);
 			axios.post(URL_PATH.url+"products/edit", formData).then( response => {
 				this.getItem();
+				this.editProduct = true;
 				$('#editModal').modal('show');
 				eventBus.$emit('itemChanged');
 			});
-    }
+    },
+		doDelete(id){
+			axios.delete(URL_PATH.url+'products/delete', {
+				params: {
+					id: id
+				}
+			}).then( rasponse => {
+				this.deleteProduct = true;
+				$('#editModal').modal('show');
+			});
+
+		}
 	}
 }
 </script>
@@ -184,6 +220,7 @@ export default {
 		margin-bottom: 40px;
 		cursor: pointer;
 	}
+	h3{ color: #fff; }
 	img{
 		margin-bottom: 30px;
 		cursor: pointer;
@@ -213,11 +250,12 @@ export default {
 	}
 	.fa-ban{ color: #881D1D; background: #fff; }
 	#body{
-		width: 80%;
 		margin: 30px auto;
 	}
 	textarea{ margin-bottom: 10px; }
 	.fa-pencil-alt{ margin: 0 10px 5px 10px; }
 	.picture-input{ color: #fff; }
 	.size{ color: #F2EF08; }
+	.btn{ margin: 0 auto; }
+	.description{ margin: 30px 0; padding: 0; }
 </style>

@@ -103,7 +103,7 @@ export default{
 			}).then( response => {
 				response.data.res === 'admin' ? this.admin = true : this.admin = false;
 			});
-		},
+		}
 	}
 }
 </script>

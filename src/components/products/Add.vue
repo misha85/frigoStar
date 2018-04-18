@@ -153,7 +153,7 @@ export default {
 	},
 	methods:{
 		fillTheFields(){
-			axios.get(URL_PATH.url+'add/add', {
+			axios.get(URL_PATH.url+'products/add', {
 				params: {
 					field: 'categories'
 				}
@@ -180,14 +180,14 @@ export default {
 			else {
 				this.error = false;
 				let formData = new FormData();
-				formData.append('selectedCategory', this.selectedCategory);
 				formData.append('selectedGroup', this.selectedGroup);
 				formData.append('title', this.item.title);
 				formData.append('description', this.item.description);
-				formData.append('smallImagell', this.item.smallImage);
+				formData.append('smallImage', this.item.smallImage);
 				formData.append('largeImage', this.item.largeImage);
-				axios.post(URL_PATH.url+'add/add', formData).then( response => {
-					$('#addModal').modal('show');
+				axios.post(URL_PATH.url+'products/add', formData).then( response => {
+					console.log(response.data);
+					// $('#addModal').modal('show');
 				});
 			}
 		},
@@ -200,14 +200,13 @@ export default {
 	watch:{
 		selectedCategory(){
 			if (this.selectedCategory !== 'Izaberite kategoriju') {
-				axios.get(URL_PATH.url+'add/add', {
+				axios.get(URL_PATH.url+'products/add', {
 					params: {
 						field: 'groups',
 						catId: this.selectedCategory
 					}
 				}).then( response => {
 					this.groups = response.data.groups;
-					console.log(this.groups);
 				})
 			}
 		}
