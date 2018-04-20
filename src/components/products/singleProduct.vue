@@ -6,7 +6,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<h5><i>
+		<h5 class="bcground"><i>
 			<router-link to="/katalog">
 				Proizvodi
 			</router-link> <span class="arrow">></span>
@@ -15,7 +15,8 @@
 			</router-link> <span class="arrow">></span>
 			<router-link :to="{ name: 'groups', query: { kategorija: product.ktg_id, naziv: product.grpUrl, id: product.grp_id }}">
 				{{ product.grp_ime | jsUcfirst }}
-			</router-link></i></h5>
+			</router-link>
+		</i></h5>
 	</div>
 	<div class=" main">
 		<div class="">
@@ -132,5 +133,5 @@ export default {
 		padding-top: 20px;
 	}
 	.btn-light{ border-color: firebrick; }
-	.arrow{ color: #fff; }
+	.arrow, a:hover{ color: #fff; }
 </style>

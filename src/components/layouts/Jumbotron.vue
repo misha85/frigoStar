@@ -6,7 +6,7 @@
 				<img src="../../assets/main-logo.png" alt="Frigo star logo" width="100%"/>
 			</div>
 			<div class="col-md-8 center-block">
-				<div>
+				<div class="bcground">
 					<h1 class="text-center"><i>Dobrodošli</i></h1>
 					<span class="clear spacer_responsive_hide_mobile " style="height:13px;display:block;"></span>
 					<p class="text-center">Vaše je da poželite, a mi ćemo ispuniti Vaše želje.</p>
@@ -28,7 +28,7 @@
 			</section>
 		</div>
 		<div class="row">
-			<h3>Naš tim se sastoji od predanih i talentovanih ljudi koji će dati sve od sebe kako bi Vi bili zadovoljni.</h3>
+			<h3 class="bcground">Naš tim se sastoji od predanih i talentovanih ljudi koji će dati sve od sebe kako bi Vi bili zadovoljni.</h3>
 		</div>
 		<div class="row">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -58,8 +58,8 @@ export default {
 </script>
 
 <style scoped>
-	.hero{
-		margin-top: 30px;
+	.logo{
+		/*padding-top: 50px;*/
 	}
 	.container{
 		color: #fff;

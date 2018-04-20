@@ -10,8 +10,8 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<h3>Tu smo zbog Vas <i class="far fa-smile"></i></h3>
-				<div class="content">
+				<h3 class="bcground">Tu smo zbog Vas <i class="far fa-smile"></i></h3>
+				<div class="content  bcground">
 					<p>
 						Bavimo se proizvodnjom profesionalne ugostiteljske opreme (rashladnih uređaja, termičkih uređaja i ostale neutralne opreme) koja se koristi u svim granama ugostiteljstva i trgovine, kao što su : pekare, restorani, pečenjare, poslastičarnice, fast-food objekti, barovi, klubovi, trgovinske radnje, mesare, samoposluge, dragstori, mini marketi, diskonti ...
 					</p>
@@ -27,10 +27,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<h3>Zašto baš mi <i class="fas fa-question"></i></h3>
+				<h3 class="bcground">Zašto baš mi <i class="fas fa-question"></i></h3>
 				<div class="tools">
 					<img src="../assets/garage-hanging-mechanic-162553.jpg" class="img-fluid" alt="">
-					<div class="content">
+					<div class="content  bcground">
 						<p>
 							Kvalitet proizvoda kompanije Frigo Star je uvek na prvom mestu. Od projektovanja do proizvodnje Naši proizvodi podležu sertifikovanom sistemu upravljanja kvalitetom. To zahteva stalnu ulaznu kontrolu repromaterijala, kontrolu procesa projektovanja, proizvodnje, montaže, probe i testiranja, te završnu kontrolu gotovog proizvoda i kontrolu u eksploataciji.
 						</p>

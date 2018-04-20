@@ -4,14 +4,14 @@
 			<div class="sub-nav">
 				<ul class="nav nav-pills nav-fill">
 				  <li v-for="category in categories" :key="category.ktg_id" class="nav-item">
-				    <router-link :to="{ name: 'category', query: { naziv: category.urlTitle, id: category.ktg_id } }" tag="a" class="nav-link" exact v-html="category.ktg_ime"></router-link>
+				    <router-link :to="{ name: 'category', query: { naziv: category.urlTitle, id: category.ktg_id } }" tag="a" class="nav-link bcground" exact v-html="category.ktg_ime"></router-link>
 				  </li>
 				</ul>
 				<hr>
 			</div>
 		</div>
 		<div>
-			<h1 v-if="!query"><i>Naša preporuka</i></h1>
+			<h1 v-if="!query"><i class="bcground">Naša preporuka</i></h1>
 			<div v-if="query">
 				<transition name="slide" mode="out-in">
 					<router-view></router-view>
@@ -135,7 +135,8 @@ export default{
 		transition: 100ms;
         box-shadow: 7px 7px 30px -2px rgba(255, 255, 255, 0.75);
 	}
-	a:hover{ text-decoration: none; }
+	a:hover{ text-decoration: none; color: #fff; }
+	a:hover>.fa-thermometer-empty{ color: #007bff; }
 	.card-body{ padding: 0; }
 	.card-header{
 		height: 70px;

@@ -6,11 +6,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="map col-md-6 col-12">
-				<h2>Kako do nas <i class="fas fa-map-signs"></i></h2>
+				<h2 class="bcground">Kako do nas <i class="fas fa-map-signs"></i></h2>
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2821.7877564526134!2d19.92655530919634!3d44.95192898385917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a530dd168f303%3A0x79165094a22a4159!2z0KDRg9C80YHQutCwIDY1LCDQlNC-0LHRgNC40L3RhtC4!5e0!3m2!1ssr!2srs!4v1523741196751" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
 			</div>
 			<div class="form col-md-6 col-12">
-				<h2>Tu smo za svako vaše pitanje</h2>
+				<h2 class="bcground">Tu smo za svako vaše pitanje</h2>
 				<form>
 					<div class="email form-group">
 						<input v-model="from" type="email" class="form-control" id="email" name="email" placeholder="vaša email adresa..." required>
@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="info col-md-6 col-12">
+			<div class="info col-md-6 col-12 bcground">
 				<div class="row">
 					<h4>Kontakt podaci:</h4>
 					<p class="col-12 address"><strong>Adresa:</strong> Rumska 65, Dobrinci <small>(opština Ruma)</small> Srbija</p>
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 			<div class="handshake col-md-6 col-12">
-				<h4>Radujemo se budućoj saradnji <i class="far fa-smile"></i></h4>
+				<h4 class="bcground">Radujemo se budućoj saradnji <i class="far fa-smile"></i></h4>
 				<img src="../assets/achievement-agreement-business-886465.png" class="img-fluid" alt="">
 			</div>
 		</div>

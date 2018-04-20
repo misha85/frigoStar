@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="row">
 		<div class="sub-nav">
-			<h1><i>{{ title }}</i></h1>
+			<h1><i class="bcground">{{ title }}</i></h1>
 		</div>
 	</div>
 	<div class="row">
