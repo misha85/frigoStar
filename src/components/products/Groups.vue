@@ -30,7 +30,7 @@
 					</div>
 						<img class="img-fluid" :src="product.url_img">
 					<div class="card-footer">Vise informacija</div>
-					<router-link tag="button" class="btn btn-warning" :to="{ name: 'edit', query: { id: product.pzv_id } }">Izmeni</router-link>
+					<router-link v-if="admin" tag="button" class="btn btn-warning" :to="{ name: 'edit', query: { id: product.pzv_id } }">Izmeni</router-link>
 				</div>
 			</router-link>
 		</article>
@@ -50,7 +50,8 @@ export default {
 			category: '',
 			catUrl: '',
 			title: '',
-			message: false
+			message: false,
+			admin: false
 		}
 	},
 	methods: {
@@ -73,17 +74,26 @@ export default {
 				}
 			})
 		},
+		checkSession(){
+			axios.get(URL_PATH.url+'login/session', {
+				params: { sid: localStorage.getItem('sid') }
+			}).then( response => {
+				response.data.res === 'admin' ? this.admin = true : this.admin = false;
+			});
+		}
 	},
 	created(){
 		this.getProducts();
 		this.title = this.$route.query.naziv.replace(/_/g, ' ');
 		this.changeMessageStatus;
+		this.checkSession();
 	},
 	watch:{
 		'$route'(){
 			this.getProducts();
 			this.title = this.$route.query.naziv.replace(/_/g, ' ');
 			this.changeMessageStatus;
+			this.checkSession();
 		}
 	},
 	computed:{

@@ -66,10 +66,3 @@ export default {
 	input{ text-align: center; color: }
 </style>
 
-
-<!--
-
-frigostar01@gmail.com
-fr&g0L1nu#St@rTe$ra
-
- -->

@@ -48,6 +48,7 @@ export default {
 	created(){
 		this.getProduct();
 		this.title = this.$route.query.naziv.replace('_', ' ');
+		this.checkSession();
 	},
 	methods:{
 		getProduct(){
@@ -71,6 +72,13 @@ export default {
 					this.groups[i].urlIme = this.groups[i].grp_ime.replace(/ /g , "_");
 				}
 			})
+		},
+		checkSession(){
+			axios.get(URL_PATH.url+'login/session', {
+				params: { sid: localStorage.getItem('sid') }
+			}).then( response => {
+				response.data.res === 'admin' ? this.admin = true : this.admin = false;
+			});
 		}
 	},
 	filters: {
@@ -82,6 +90,7 @@ export default {
 	watch:{
 		'this.$route'(){
 			this.$route.params.category = this.product.ktg_ime;
+			this.checkSession();
 		}
 	}
 }
