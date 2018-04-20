@@ -1,18 +1,18 @@
 <template>
 <div class="container">
 	<div class="row">
-		<h1>Uloguj se</h1>
+		<h1 class="bcground">Uloguj se</h1>
 	</div>
 	<div class="row">
 		<div class="warning" v-if="warning">Pogrešan email ili šifra</div>
 	</div>
 	<div class="">
 		<div class="form-group">
-			<label for="email">Email:</label>
+			<label for="email" class="bcground">Email:</label>
 			<input v-model="email" type="email" class="form-control" id="email" name="email" placeholder="upiši email...">
 		</div>
 		<div class="form-group">
-			<label for="password">Password:</label>
+			<label for="password" class="bcground">Password:</label>
 			<input v-model="password" type="password" class="form-control" id="password" name="password" placeholder="upiši šifru...">
 		</div>
 		<div class="form-group">

@@ -1,7 +1,7 @@
 <template>
-<div>
+<header>
 	<app-nav></app-nav>
-</div>
+</header>
 </template>
 
 <script>

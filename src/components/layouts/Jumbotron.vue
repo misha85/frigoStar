@@ -58,9 +58,6 @@ export default {
 </script>
 
 <style scoped>
-	.logo{
-		/*padding-top: 50px;*/
-	}
 	.container{
 		color: #fff;
 		font-size: 16px;
@@ -74,7 +71,7 @@ export default {
 	}
 	.our-team{ border-radius: 20px; }
 	img[alt="hitachi"]{ margin-bottom: 30px; }
-	h3{ color: #008EFF; margin: 20px auto; }
+	h3{ color: #FFF; margin: 20px auto; }
 	#idea {
 		background:#008EFF;
 		overflow:hidden;
@@ -94,7 +91,6 @@ export default {
 		animation: sijalica 2s infinite;
 	}
 	/* dodate su prefiks varijante animacije zbog nekih starijih browsera */
-
 	@-webkit-keyframes sijalica {
 		0% {    opacity:0; }
 		30% {   opacity:0.7; }
@@ -103,7 +99,6 @@ export default {
 		90% {   opacity:1; }
 		100% {  opacity:0; }
 	}
-
 	@-moz-keyframes sijalica {
 		0% {    opacity:0; }
 		30% {   opacity:0.7; }
@@ -112,7 +107,6 @@ export default {
 		90% {   opacity:1; }
 		100% {  opacity:0; }
 	}
-
 	@-o-keyframes sijalica {
 		0% {    opacity:0; }
 		30% {   opacity:0.7; }
@@ -121,7 +115,6 @@ export default {
 		90% {   opacity:1; }
 		100% {  opacity:0; }
 	}
-
 	@keyframes sijalica {
 		0% {    opacity:0; }
 		30% {   opacity:0.7;}

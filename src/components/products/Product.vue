@@ -68,6 +68,9 @@ export default{
 		eventBus.$on('signOut', () => {
 			this.admin = false;
 		})
+		eventBus.$on('itemAdded', () => {
+			this.getProducts();
+		})
 		this.getProducts();
 		this.checkSession();
 	},

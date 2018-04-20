@@ -29,7 +29,7 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="form-group">
-				<textarea class="form-control" v-model="item.description" rows="7" placeholder="Opis..."></textarea>
+				<vue-editor v-model="item.description" class="form-control editor" placeholder="opis..." :editorToolbar="customToolbar"></vue-editor>
 			</div> <!--  .form-group -->
 		</div>
 	</div> <!--  .row -->
@@ -128,10 +128,13 @@
 import axios from 'axios';
 import { URL_PATH } from '../../config.js';
 import PictureInput from 'vue-picture-input';
+import { VueEditor } from 'vue2-editor';
+import { eventBus } from '../../main';
 
 export default {
 	components: {
-		PictureInput
+		PictureInput,
+		VueEditor,
 	},
 	data(){
 		return {
@@ -143,7 +146,16 @@ export default {
 				title: '',
 				description: ''
 			},
-			error: false
+			error: false,
+			customToolbar: [
+			[{ 'header': [false, 2, 3, 4, 5, 6, ] }],
+			['bold', 'italic', 'underline', 'strike'],
+			[{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}],
+			[{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
+			[{ 'indent': '-1'}, { 'indent': '+1' }],
+			[{ 'color': [] }, { 'background': [] }],
+			['link']
+			]
 		}
 	},
 	created(){
@@ -188,7 +200,8 @@ export default {
 				formData.append('largeImage', this.item.largeImage);
 				axios.post(URL_PATH.url+'products/add-product', formData).then( response => {
 					console.log(response.data);
-					// $('#addModal').modal('show');
+					eventBus.$emit('itemAdded');
+					$('#addModal').modal('show');
 				});
 			}
 		},

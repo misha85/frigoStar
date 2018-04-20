@@ -72,7 +72,7 @@ export default {
 		text-align: left !important;
 	}
 	.content{
-		padding: 20px 20px 20px 0;
+		padding: 20px;
 		box-shadow: 3px 3px 5px #008EFF;
 		font-size: 19px;
 		color: #fff;

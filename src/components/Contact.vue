@@ -28,13 +28,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="info col-md-6 col-12 bcground">
+			<div class="info col-md-6 col-12">
 				<div class="row">
-					<h4>Kontakt podaci:</h4>
-					<p class="col-12 address"><strong>Adresa:</strong> Rumska 65, Dobrinci <small>(opština Ruma)</small> Srbija</p>
-					<p class="col-12 address"><strong>Telefon:</strong> +381 64/9874-580</p>
-					<p class="col-12 address"><strong>Email:</strong> frigostar01@gmail.com</p>
-					<p class="col-12 address"><strong>Web adresa:</strong> www.frigostar01.com</p>
+					<h4 class="bcground">Kontakt podaci:</h4>
+					<p class="col-12 address bcground"><strong>Adresa:</strong> Rumska 65, Dobrinci <small>(opština Ruma)</small> Srbija</p>
+					<p class="col-12 address bcground"><strong>Telefon:</strong> +381 64/9874-580</p>
+					<p class="col-12 address bcground"><strong>Email:</strong> frigostar01@gmail.com</p>
+					<p class="col-12 address bcground"><strong>Web adresa:</strong> www.frigostar01.com</p>
 				</div>
 			</div>
 			<div class="handshake col-md-6 col-12">
