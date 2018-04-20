@@ -41,12 +41,11 @@
 <script>
 	import axios from 'axios';
 	import { eventBus } from '../../main.js';
+	import { URL_PATH } from '../../config.js';
 
 	export default {
 		data() {
 			return {
-				infoActive: false,
-				kategorije: [],
 				active: false,
 				admin: false
 			}
@@ -61,12 +60,6 @@
 			}
 		},
 		created(){
-			axios.get('http://praksa3.mars-t.mars-hosting.com/misa/frigostar/get-category').then( response => {
-				this.kategorije = response.data.kategorije;
-				for(let i=0; i<response.data.kategorije.length; i++){
-					this.kategorije[i].url_ime = response.data.kategorije[i].ktg_ime.replace(' ', '-');
-				}
-			});
 			this.isActive;
 			this.checkSession();
 		},
@@ -78,14 +71,14 @@
 		},
 		methods:{
 			checkSession(){
-				axios.get('http://663n121.mars1.mars-hosting.com/api/login/session', {
+				axios.get(URL_PATH.url+'login/session', {
 					params: { sid: localStorage.getItem('sid') }
 				}).then( response => {
 					response.data.res === 'admin' ? this.admin = true : this.admin = false;
 				});
 			},
 			signOut(){
-				axios.get('http://663n121.mars1.mars-hosting.com/api/login/logout');
+				axios.get(URL_PATH.url+'login/logout');
 				this.admin = false;
 				localStorage.removeItem('sid');
 				eventBus.$emit('signOut');
