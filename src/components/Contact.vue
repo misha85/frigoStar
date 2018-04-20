@@ -1,7 +1,7 @@
 <template>
 <div>
 	<div class="hero">
-		<img src="../assets/background-3228704_1280.jpg" class="img-fluid" alt="">
+		<img src="../assets/background-3228704_1280.png" class="img-fluid" alt="">
 	</div>
 	<div class="container">
 		<div class="row">
@@ -39,7 +39,7 @@
 			</div>
 			<div class="handshake col-md-6 col-12">
 				<h4>Radujemo se budućoj saradnji <i class="far fa-smile"></i></h4>
-				<img src="../assets/achievement-agreement-business-886465.jpg" class="img-fluid" alt="">
+				<img src="../assets/achievement-agreement-business-886465.png" class="img-fluid" alt="">
 			</div>
 		</div>
 	</div>

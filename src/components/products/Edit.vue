@@ -160,8 +160,8 @@ export default {
 			}).then( response => {
 				this.item = response.data.item;
 				this.item.urlIme = this.item.grp_ime.replace(/ /g , "_");
-				this.item.smallImgUrl = URL_PATH.url+'get-small-images/'+this.$route.query.id;
-				this.item.largeImgUrl = URL_PATH.url+'get-large-images/'+this.$route.query.id;
+				this.item.smallImgUrl = URL_PATH.url+'images/get-small-images/'+this.$route.query.id;
+				this.item.largeImgUrl = URL_PATH.url+'images/get-large-images/'+this.$route.query.id;
 	    	this.item.newSmallImage = '';
 	    	this.item.newLargeImage = '';
 	    	console.log(this.item.urlIme);

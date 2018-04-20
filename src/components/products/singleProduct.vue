@@ -51,14 +51,14 @@ export default {
 	},
 	methods:{
 		getProduct(){
-			axios.get(URL_PATH.url+'get-product', {
+			axios.get(URL_PATH.url+'products/get-product', {
 				params: {
 					id: this.$route.query.id
 				}
 			}).then( response => {
 				console.log(response.data);
 				this.product = response.data.product;
-				this.product.imgUrl = URL_PATH.url+"get-large-images/"+this.product.pzv_id;
+				this.product.imgUrl = URL_PATH.url+"images/get-large-images/"+this.product.pzv_id;
 				this.product.catUrl = this.product.ktg_ime.replace(' ', '_');
 				this.product.grpUrl = this.product.grp_ime.replace(/ /g, '_');
 				this.$route.params.category = this.product.ktg_ime;

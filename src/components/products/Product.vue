@@ -79,7 +79,7 @@ export default{
 	},
 	methods:{
 		getProducts(){
-			axios.get(URL_PATH.url+"get-category").then( response => {
+			axios.get(URL_PATH.url+"category/get-category").then( response => {
 				this.categories = response.data.kategorije;
 				for(let i=0; i<this.categories.length; i++){
 					this.categories[i].urlTitle = this.categories[i].ktg_ime.replace(' ', '_');
@@ -90,7 +90,7 @@ export default{
 				}
 				this.rnd_products = response.data.rnd_products;
 					for(let i=0; i<this.rnd_products.length; i++){
-						this.rnd_products[i].url_img = URL_PATH.url+"get-small-images/"+this.rnd_products[i].pzv_id;
+						this.rnd_products[i].url_img = URL_PATH.url+"images/get-small-images/"+this.rnd_products[i].pzv_id;
 						this.rnd_products[i].catUrl = this.rnd_products[i].ktg_ime.replace(' ', '_');
 						this.rnd_products[i].urlTitle = this.rnd_products[i].pzv_ime.replace(/ /g, '_');
 						this.title = this.rnd_products[0].ktg_ime.replace('-', ' ');
@@ -98,7 +98,7 @@ export default{
 			})
 		},
 		checkSession(){
-			axios.get('http://663n121.mars1.mars-hosting.com/api/login/session', {
+			axios.get(URL_PATH.url+'login/session', {
 				params: { sid: localStorage.getItem('sid') }
 			}).then( response => {
 				response.data.res === 'admin' ? this.admin = true : this.admin = false;

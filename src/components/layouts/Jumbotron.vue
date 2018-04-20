@@ -32,10 +32,10 @@
 		</div>
 		<div class="row">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-				<img class="our-team img-fluid" src="../../assets/adult-advertising-brand-162625.jpg" alt="hitachi">
+				<img class="our-team img-fluid" src="../../assets/adult-advertising-brand-162625.png" alt="hitachi">
 			</div>
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-				<img class="our-team img-fluid" src="../../assets/construction-craftsman-hammer-8092.jpg" alt="hammerman">
+				<img class="our-team img-fluid" src="../../assets/construction-craftsman-hammer-8092.png" alt="hammerman">
 			</div>
 		</div>
 	</div>
