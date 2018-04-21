@@ -87,7 +87,7 @@ export default{
 				for(let i=0; i<this.categories.length; i++){
 					this.categories[i].urlTitle = this.categories[i].ktg_ime.replace(' ', '_');
 					if(i === 0) this.categories[i].ktg_ime += ' <i class="fas fa-thermometer-three-quarters" style="color:red"></i>';
-					if(i === 1) this.categories[i].ktg_ime += ' <i class="fas fa-thermometer-empty"></i>';
+					if(i === 1) this.categories[i].ktg_ime += ' <i class="fas fa-thermometer-empty" style="color: #007bff;"></i>';
 					if(i === 2) this.categories[i].ktg_ime += ' <i class="fas fa-sun" style="color:orange"></i>';
 					if(i === 3) this.categories[i].ktg_ime += ' <i class="fas fa-link" style="color:grey"></i>';
 				}
@@ -112,19 +112,25 @@ export default{
 </script>
 
 <style scoped>
-	.product{
-		margin: 20px 0;
-	}
 	button{ text-transform: capitalize; margin: 10px; }
+	h1{ text-transform: capitalize; color: #007bff }
+	a:hover{ text-decoration: none; color: #fff; }
+	img{ width: 300px; position: relative; }
+	li{ text-transform: capitalize; }
+	.card-header-add{ background: #238618; height: 70px; border-radius: 8px 8px 0 0; line-height: 70px; font-size: 22px; color: #fff; }
+	.card:hover{ font-size: 21px; transition: 100ms;  box-shadow: 7px 7px 30px -2px rgba(255, 255, 255, 0.75); }
+	.add-footer{ background: #238618 !important; font-size: 22px; height: 47px; line-height: 20px; }
+	.brighten:hover { -webkit-filter: brightness(100%); }
+	.sub-nav{ margin: 20px auto; font-size: 21px; }
+	.btn-light{ border-color: firebrick; }
+	.product{ margin: 20px 0; }
+	.card-body{ padding: 0; }
+	.add{ padding: 10px; }
 	.btn-warning{
 		position: absolute;
 		top: 70px;
 		margin: 0;
 		z-index: 1000;
-	}
-	img{
-		width: 300px;
-	    position: relative;
 	}
 	.card{
 		color: #fff;
@@ -133,14 +139,6 @@ export default{
 	    font-size: 21px;
 	    border-radius: 7px;
 	}
-	.card:hover{
-		font-size: 21px;
-		transition: 100ms;
-        box-shadow: 7px 7px 30px -2px rgba(255, 255, 255, 0.75);
-	}
-	a:hover{ text-decoration: none; color: #fff; }
-	a:hover>.fa-thermometer-empty{ color: #007bff; }
-	.card-body{ padding: 0; }
 	.card-header{
 		height: 70px;
 		padding-top: 5px;
@@ -153,9 +151,7 @@ export default{
 		background: #007bff;
 		border-radius: 0 0 7px 7px;
 	}
-	h1{ text-transform: capitalize; color: #007bff }
-	.sub-nav{ margin: 20px auto; font-size: 21px; }
-
+	/*  ===============  TRANSITION  AND  ANIMATION  ===============  */
 	.brighten {
 	-webkit-filter: brightness(70%);
 	-webkit-transition: all 1s ease;
@@ -164,12 +160,6 @@ export default{
 	-ms-transition: all 1s ease;
 	transition: all 1s ease;
 	}
-	.add{ padding: 10px; }
-	.card-header-add{ background: #238618; height: 70px; border-radius: 8px 8px 0 0; line-height: 70px; font-size: 22px; color: #fff; }
-	.add-footer{ background: #238618; font-size: 22px; height: 47px; line-height: 20px; }
-	.brighten:hover { -webkit-filter: brightness(100%); }
-	.btn-light{ border-color: firebrick; }
-	li{ text-transform: capitalize; }
 	.slide-leave-active{
 	  transition: opacity 1s ease;
 	  opacity: 0;

@@ -1,8 +1,9 @@
 <template>
 <div class="container">
 	<!--  ==================================  TITLE  ==================================  -->
+	<h1 class="bcground">Izmeni proizvod</h1>
 	<div class="row">
-		<h1 v-if="!editTitle" @click="editTitle = !editTitle"><i class="fas fa-pencil-alt"></i>{{ item.pzv_ime }}</h1>
+		<h3 class="bcground" v-if="!editTitle" @click="editTitle = !editTitle"><i class="fas fa-pencil-alt"></i>{{ item.pzv_ime }}</h3>
 		<div v-if="editTitle" class="form-group col-12 col-sm-12 col-md-12 col-lg-12">
 			<input type="text" @keyup.enter="editTitle = !editTitle" class="form-control col-12" id="naslov" name="naslov" v-model="item.pzv_ime" placeholder="naslov...">
 			<span @click="editTitle = !editTitle"><i class="fas fa-check"></i></span>
@@ -73,7 +74,7 @@
 
 	<!--  ==================================  DESCRIPTION  ==================================  -->
 	<div class="row">
-			<h3>Opis proizvoda:</h3>
+			<h5 class="bcground">Opis proizvoda:</h5>
 			<div class="description col-12">
 				<vue-editor v-model="item.pzv_opis" class="form-control editor" placeholder="opis..." :editorToolbar="customToolbar"></vue-editor>
 			</div>
@@ -220,11 +221,8 @@ export default {
 		margin-bottom: 40px;
 		cursor: pointer;
 	}
-	h3{ color: #fff; }
-	img{
-		margin-bottom: 30px;
-		cursor: pointer;
-	}
+	h5, h3{ color: #fff; }
+	img{ margin-bottom: 30px; cursor: pointer; }
 	.small-img{ width: 200px; height: 250px; }
 	.large-img{ width: 300px; height: 350px; }
 	.fa-pencil-alt{
@@ -256,6 +254,6 @@ export default {
 	.fa-pencil-alt{ margin: 0 10px 5px 10px; }
 	.picture-input{ color: #fff; }
 	.size{ color: #F2EF08; }
-	.btn{ margin: 0 auto; }
+	.btn-primary, .btn-danger{ margin-right: 10px; }
 	.description{ margin: 30px 0; padding: 0; }
 </style>

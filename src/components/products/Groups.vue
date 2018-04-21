@@ -1,16 +1,16 @@
 <template>
 <div class="container">
 	<div class="row">
-		<div class="sub-nav">
-			<h1><i>{{ title }}</i></h1>
-		</div>
-	</div>
-	<div class="row">
 		<div class="buttons" v-for="group in groups">
 			<router-link :to="{ name: 'groups', query: { kategorija: group.ktg_id, naziv: group.urlIme, id: group.grp_id } }" tag="button" class="btn btn-light" @click="changeMessageStatus">{{ group.grp_ime }}</router-link>
 		</div>
 	</div>
 	<hr>
+	<div class="row">
+		<div class="sub-nav">
+			<h1><i class="bcground">{{ title }}</i></h1>
+		</div>
+	</div>
 	<div v-if="message" class="message">
 		<div class="card text-white bg-light mb-3" style="">
 		  <div class="card-header">Frigo Star</div>
@@ -154,7 +154,7 @@ export default {
 		font-size: 14px;
 		border-radius:  0 0 7px 7px;
 	}
-	h1{ text-transform: capitalize; color: firebrick }
+	h1{ text-transform: capitalize; color: #fff; }
 	.sub-nav{ margin: 20px auto; }
 
 	.brighten {

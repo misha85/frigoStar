@@ -117,7 +117,6 @@ export default {
 		font-size: 18px;
 		background: linear-gradient(to right, #008EFF 20%, #4234EB 80%);
 	}
-	/*img{ margin-left: 20px; }*/
 	ul{ list-style: none; }
 	button{ text-transform: capitalize; margin: 10px; }
 	.buttons{ margin: 10px auto; }

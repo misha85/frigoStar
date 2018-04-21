@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-	<h1>Dodaj novi artikal</h1>
+	<h1 class="bcground">Dodaj novi artikal</h1>
 	<div class="row">
 		<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
@@ -38,7 +38,7 @@
 		<div class="col-12 col-sm-12 col-md-5 col-lg-5">
 			<span class="size">* poželjna veličina 400 x 400 px</span><br>
 			<picture-input
-				class="picture-input small-img"
+				class="picture-input small-img bcground"
 				ref="smallPictureInput"
 				:crop="false"
 				@change="onChanged('small')"
@@ -65,7 +65,7 @@
 		<div class="col-12 col-sm-12 col-md-7 col-lg-7">
 			<span class="size">* ovde ožeži</span><br>
 			<picture-input
-				class="picture-input large-img"
+				class="picture-input large-img bcground"
 				ref="largePictureInput"
 				:crop="false"
 				@change="onChanged('large')"
@@ -90,7 +90,7 @@
 		</div> <!--  .col-7 .col-12  -->
 	</div> <!--  .row  -->
 	<div class="row">
-		<div class="buttons">
+		<div class="buttons bcground">
 			<button class="btn btn-primary" @click="add">Dodaj</button>
 			<button class="btn btn-warning" @click="redirect">Nemoj sad</button>
 		</div>
@@ -230,7 +230,7 @@ export default {
 
 <style scoped>
 	h1{
-		color: #fff;
+		color: #fff !important;
 		margin-bottom: 40px;
 		color: #767676;
 	}
@@ -245,7 +245,7 @@ export default {
 	textarea{ margin-top: 30px; }
 	.buttons{ margin-top: 30px; }
 	.btn-warning{ color: #000; }
-	button{margin-left: 20px;}
+	button{ margin-left: 20px; }
 	.error{ margin-top: 30px; color: #fff; font-size: 25px; }
 	.card-header{ border-radius: 20px; padding: 10px; }
 </style>

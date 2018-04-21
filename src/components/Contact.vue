@@ -13,13 +13,13 @@
 				<h2 class="bcground">Tu smo za svako vaše pitanje</h2>
 				<form>
 					<div class="email form-group">
-						<input v-model="from" type="email" class="form-control" id="email" name="email" placeholder="vaša email adresa..." required>
+						<input v-model="from" type="email" class="form-control" id="email" name="email" placeholder="email..." required>
 					</div>
 					<div class=" form-group">
 						<input v-model="subject" type="text" class="form-control" id="subject" name="subject" placeholder="tema.." required>
 					</div>
 					<div class="form-group">
-					    <textarea v-model="content" name="body" id="body" class="form-control" placeholder="vaša poruka..." rows="5"></textarea>
+					    <textarea v-model="content" name="body" id="body" class="form-control" placeholder="poruka..." rows="5"></textarea>
 					</div>
 					<div class="form-group">
 						<button @click.prevent="sendMail" type="submit" class="btn btn-primary" name="submit">Pošalji</button>

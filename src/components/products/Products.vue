@@ -10,7 +10,6 @@
 			<router-link :to="{ name: 'groups', query: { kategorija: group.ktg_id, naziv: group.urlIme, id: group.grp_id } }" tag="button" class="btn btn-light">{{ group.grp_ime }}</router-link>
 		</div>
 	</div>
-	<hr>
 	<div class="row">
 		<article class="product col-lg-3 col-md-4 col-sm-6 col-6" v-for="product in products">
 			<router-link :to="{ name: 'product', query: { grupa: product.grp_id, naziv: product.urlTitle, id: product.pzv_id } }" tag="a">
@@ -129,7 +128,7 @@ export default {
 		font-size: 14px;
 		border-radius: 0 0 7px 7px;
 	}
-	h1{ text-transform: capitalize; color: firebrick }
+	h1{ text-transform: capitalize; color: #fff; }
 	.sub-nav{ margin: 20px auto; }
 
 	.brighten {
